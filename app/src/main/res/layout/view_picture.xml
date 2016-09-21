@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <com.zncm.js.view.photoview.PhotoView
+        android:id="@+id/photoView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></com.zncm.js.view.photoview.PhotoView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dip"
+            android:gravity="left"
+            android:text="10:22"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            style="@style/tvShadow"
+            android:visibility="visible" />
+
+
+        <com.malinskiy.materialicons.widget.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dip"
+            android:textSize="24sp"
+            style="@style/tvShadow"
+            android:textColor="@color/white"
+            android:text="{md-file-download}"
+            android:id="@+id/tvDownload" />
+
+
+        <TextView
+            android:id="@+id/tvPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dip"
+            android:gravity="right"
+            android:text="10"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            style="@style/tvShadow"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+</FrameLayout>

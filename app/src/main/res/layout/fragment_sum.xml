@@ -1,0 +1,212 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:text=""
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="分组"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="日记本"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="清单"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="进展"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="提醒"
+            style="@style/textTableRow" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:text="今日"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_today_p"
+            android:text="分组"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_today_t"
+            android:text="日记本"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_today_c"
+            android:text="清单"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_today_pg"
+            android:text="进展"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_today_r"
+            android:text="提醒"
+            style="@style/textTableRow" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:text="合计"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_p"
+            android:text="分组"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_t"
+            android:text="日记本"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_c"
+            android:text="清单"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_pg"
+            android:text="进展"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_r"
+            android:text="提醒"
+            style="@style/textTableRow" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:text="未完成"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_unfinish_p"
+            android:text="分组"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_unfinish_t"
+            android:text="日记本"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_unfinish_c"
+            android:text="清单"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_unfinish_pg"
+            android:text="进展"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_unfinish_r"
+            android:text="提醒"
+            style="@style/textTableRow" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:text=" "
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="完成分组"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="完成日记本"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="完成清单"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:text="处理提醒"
+            style="@style/textTableRow" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:text="今日"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_finish_p"
+            android:text="完成分组"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_finish_t"
+            android:text="完成日记本"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_finish_c"
+            android:text="完成清单"
+            style="@style/textTableRow" />
+
+        <TextView
+            android:id="@+id/tv_finish_r"
+            android:text="处理提醒"
+            style="@style/textTableRow" />
+    </TableRow>
+</TableLayout>

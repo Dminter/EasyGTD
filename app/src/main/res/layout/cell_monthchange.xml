@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:gravity="center"
+    android:layout_marginRight="10dp"
+    android:orientation="horizontal">
+    
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/btnRemind"
+        android:background="#1E8225"
+        android:text="《"
+        android:layout_margin="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+
+    </com.gc.materialdesign.views.ButtonRectangle>
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/btnRemind2"
+        android:background="#1E8225"
+        android:text="》"
+        android:layout_margin="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+
+    </com.gc.materialdesign.views.ButtonRectangle>
+    
+    
+    
+    
+
+</LinearLayout>

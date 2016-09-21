@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pf_1"
+        android:title="复制" />
+    <item
+        android:id="@+id/pf_2"
+        android:title="编辑" />
+    <item
+        android:id="@+id/pf_3"
+        android:title="删除" />
+    <divider />
+    <item
+        android:id="@+id/pf_4"
+        android:title="加到清单" />
+    <item
+        android:id="@+id/pf_5"
+        android:title="查看" />
+</menu>
