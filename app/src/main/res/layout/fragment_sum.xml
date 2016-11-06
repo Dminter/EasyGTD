@@ -16,11 +16,11 @@
             style="@style/textTableRow" />
 
         <TextView
-            android:text="分组"
+            android:text="笔记本组"
             style="@style/textTableRow" />
 
         <TextView
-            android:text="日记本"
+            android:text="笔记本"
             style="@style/textTableRow" />
 
         <TextView
@@ -50,12 +50,12 @@
 
         <TextView
             android:id="@+id/tv_today_p"
-            android:text="分组"
+            android:text="笔记本组"
             style="@style/textTableRow" />
 
         <TextView
             android:id="@+id/tv_today_t"
-            android:text="日记本"
+            android:text="笔记本"
             style="@style/textTableRow" />
 
         <TextView
@@ -87,12 +87,12 @@
 
         <TextView
             android:id="@+id/tv_p"
-            android:text="分组"
+            android:text="笔记本组"
             style="@style/textTableRow" />
 
         <TextView
             android:id="@+id/tv_t"
-            android:text="日记本"
+            android:text="笔记本"
             style="@style/textTableRow" />
 
         <TextView
@@ -125,12 +125,12 @@
 
         <TextView
             android:id="@+id/tv_unfinish_p"
-            android:text="分组"
+            android:text="笔记本组"
             style="@style/textTableRow" />
 
         <TextView
             android:id="@+id/tv_unfinish_t"
-            android:text="日记本"
+            android:text="笔记本"
             style="@style/textTableRow" />
 
         <TextView
@@ -162,11 +162,11 @@
             style="@style/textTableRow" />
 
         <TextView
-            android:text="完成分组"
+            android:text="完成笔记本组"
             style="@style/textTableRow" />
 
         <TextView
-            android:text="完成日记本"
+            android:text="完成笔记本"
             style="@style/textTableRow" />
 
         <TextView
@@ -191,12 +191,12 @@
 
         <TextView
             android:id="@+id/tv_finish_p"
-            android:text="完成分组"
+            android:text="完成笔记本组"
             style="@style/textTableRow" />
 
         <TextView
             android:id="@+id/tv_finish_t"
-            android:text="完成日记本"
+            android:text="完成笔记本"
             style="@style/textTableRow" />
 
         <TextView

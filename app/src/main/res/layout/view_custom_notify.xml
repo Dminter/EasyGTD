@@ -22,7 +22,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="新日记本" />
+        android:text="新笔记本" />
 
     <TextView
         android:id="@+id/newCheckList"

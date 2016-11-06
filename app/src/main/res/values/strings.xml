@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">记事</string>
-    <string name="app_author">浙水之南 ©浙南创盟</string>
+    <string name="app_name">MxGTD</string>
+    <string name="app_author">浙水之南</string>
 
 
     <string-array name="reminds_array">

@@ -1,0 +1,28 @@
+<tabs>
+
+    <tab
+        barColorWhenSelected="@color/material_grey_100"
+        icon="@drawable/ic_done"
+        id="@+id/tab_done"
+        title="笔记本" />
+    <tab
+        barColorWhenSelected="@color/material_grey_100"
+        icon="@drawable/ic_remind"
+        id="@+id/tab_remind"
+        title="提醒" />
+    <tab
+        barColorWhenSelected="@color/material_grey_100"
+        icon="@drawable/ic_start"
+        id="@+id/tab_like"
+        title="收藏" />
+    <tab
+        barColorWhenSelected="@color/material_grey_100"
+        icon="@drawable/ic_book"
+        id="@+id/tab_book"
+        title="笔记本组" />
+    <tab
+        barColorWhenSelected="@color/material_grey_100"
+        icon="@drawable/ic_setting"
+        id="@+id/tab_setting"
+        title="设置" />
+</tabs>

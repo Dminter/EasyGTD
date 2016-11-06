@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
 
-            <com.zncm.js.view.loadmore.LoadMoreRecyclerView
+            <com.zncm.mxgtd.view.loadmore.LoadMoreRecyclerView
                 android:id="@+id/listView"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"

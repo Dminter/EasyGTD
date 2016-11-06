@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
 
-        <com.zncm.js.view.MainBottomTabLayout
+        <com.zncm.mxgtd.view.MainBottomTabLayout
             android:id="@+id/main_bottom_tablayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"

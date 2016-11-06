@@ -1,63 +1,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:descendantFocusability="blocksDescendants"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardView"
         style="@style/Material_Card_View"
         android:foreground="@drawable/card_foreground"
+
         card_view:cardCornerRadius="@dimen/card_corner_radius"
         card_view:cardElevation="@dimen/card_elevation">
 
 
         <LinearLayout
-            android:id="@+id/llBg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             android:orientation="vertical"
-            android:padding="4dp">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="8"
-                android:text="22222222222"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="16sp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-            >
+                android:layout_marginTop="2dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/tvTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/md_orange_500"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/tvContent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TTTTTTTTTTTT"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:visibility="visible"/>
-
-                <TextView
-                    android:id="@+id/tvTag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:singleLine="true"
-                    android:text="22222222222"
-                    android:textColor="@color/md_orange_500"
-                    android:textSize="12sp"
-                    android:visibility="visible"/>
-
-            </LinearLayout>
         </LinearLayout>
 
 

@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.zncm.js"
-          android:installLocation="auto">
+    package="com.zncm.mxgtd"
+    android:installLocation="auto">
+
     <application
-        android:name="com.zncm.js.ui.MyApplication"
+        android:name="com.zncm.mxgtd.ui.MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/MXAppTheme">
         <activity
-            android:name="com.zncm.js.ui.ProjectMainActivity"
+            android:name="com.zncm.mxgtd.ui.UIMainActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.zncm.js.ui.PjActivity"/>
-        <activity android:name="com.zncm.js.ui.RdActivity"/>
-        <activity android:name="com.zncm.js.ui.PjAddActivity"/>
-        <activity android:name="com.zncm.js.ui.TkAddActivity">
+        <activity android:name="com.zncm.mxgtd.ui.PjActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.RdActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.PjAddActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.TkAddActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"></action>
 
@@ -30,16 +31,18 @@
             </intent-filter>
 
         </activity>
-        <activity android:name="com.zncm.js.ui.ProjectDetailsActivity">
+        <activity android:name="com.zncm.mxgtd.ui.ProjectDetailsActivity">
 
         </activity>
 
-        <activity android:name="com.zncm.js.ui.TkDetailsActivity"/>
-        <activity android:name="com.zncm.js.ui.MySettingActivity"/>
-        <activity android:name="com.zncm.js.ui.LikeActivity"/>
-        <receiver android:name="com.zncm.js.receiver.RemindReceiver"/>
+        <activity android:name="com.zncm.mxgtd.ui.TkDetailsActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.MySettingActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.LikeActivity" />
+
+        <receiver android:name="com.zncm.mxgtd.receiver.RemindReceiver" />
     </application>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 </manifest>

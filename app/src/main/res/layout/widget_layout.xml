@@ -18,7 +18,7 @@
             android:layout_centerInParent="true"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:text="MxGTD待办日记本" />
+            android:text="MxGTD待办笔记本" />
 
     </RelativeLayout>
 
