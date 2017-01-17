@@ -8,38 +8,35 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.ProjectData;
+import com.zncm.mxgtd.ft.BaseBusFragment;
+import com.zncm.mxgtd.ft.BaseFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.ft.TaskFragment;
 import com.zncm.mxgtd.utils.ColorGenerator;
 import com.zncm.mxgtd.utils.DbUtils;
+import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
+import com.zncm.mxgtd.view.WrapContentHeightViewPager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
-import de.greenrobot.event.EventBus;
 
-
-public class ProjectMainFt extends Fragment {
-    private ViewPager mViewPager;
+public class ProjectMainFt extends BaseBusFragment {
+    private WrapContentHeightViewPager mViewPager;
     ArrayList<ProjectData> datas = new ArrayList<>();
     ColorGenerator generator;
     int count = 0;
@@ -55,11 +52,10 @@ public class ProjectMainFt extends Fragment {
         return view;
     }
 
-
     private void initView() {
         datas = DbUtils.getProjectDataAll();
         count = datas.size();
-        mViewPager = (ViewPager) view.findViewById(R.id.pager);
+        mViewPager = (WrapContentHeightViewPager) view.findViewById(R.id.pager);
         adapter = new MyPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(3);
@@ -68,7 +64,13 @@ public class ProjectMainFt extends Fragment {
         indicator.setViewPager(mViewPager);
         XUtil.viewPagerRandomAnimation(mViewPager);
         XUtil.initIndicatorTheme(indicator);
-        EventBus.getDefault().register(this);
+
+        Toolbar  toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            toolbar.setBackgroundColor(MySp.getTheme());
+        }
+
+
 
 //        Intent newIntent = new Intent(getActivity(), TkDetailsActivity.class);
 //        newIntent.putExtra("query", query);
@@ -102,6 +104,7 @@ public class ProjectMainFt extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putSerializable(Constant.KEY_PARAM_DATA, datas.get(position));
             fragment.setArguments(bundle);
+//            fragment.initSortView();
             fragments.add(fragment);
             return fragment;
         }
@@ -124,13 +127,9 @@ public class ProjectMainFt extends Fragment {
 //        return super.onCreateOptionsMenu(menu);
 //    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 
-    public void onEvent(RefreshEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(RefreshEvent event) {
         int type = event.type;
         if (type == EnumData.RefreshEnum.PjInfo.getValue()) {
 //            Intent intent = new Intent(ctx, ProjectMainFt.class);
@@ -144,20 +143,6 @@ public class ProjectMainFt extends Fragment {
         }
     }
 
-//    public boolean dispatchKeyEvent(KeyEvent event) {
-//        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
-//                && event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-//            backToDesk(this);
-//            return true;
-//        }
-//        return super.dispatchKeyEvent(event);
-//    }
 
-    public static void backToDesk(Activity activity) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        activity.startActivity(intent);
-    }
 }
 

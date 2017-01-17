@@ -9,7 +9,6 @@
         android:id="@+id/cardView"
         style="@style/Material_Card_View"
         android:foreground="@drawable/card_foreground"
-
         card_view:cardCornerRadius="@dimen/card_corner_radius"
         card_view:cardElevation="@dimen/card_elevation">
 
@@ -25,9 +24,9 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="8"
-                android:text=""
-                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:maxLines="16"
+                android:textColor="@color/colorKeeptextb"
                 android:textSize="16sp"
                 android:visibility="gone" />
 
@@ -37,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="@color/colorKeeptextg"
                 android:textSize="14sp"
                 android:visibility="gone" />
 
@@ -48,7 +47,7 @@
                 android:layout_marginTop="2dp"
                 android:singleLine="true"
                 android:text=""
-                android:textColor="@color/md_orange_500"
+                android:textColor="@color/colorKeeptextg"
                 android:textSize="12sp"
                 android:visibility="gone" />
 

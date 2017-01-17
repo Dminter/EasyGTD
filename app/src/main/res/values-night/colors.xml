@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#616161</color>
+    <color name="colorPrimaryDark">#616161</color>
+    <color name="colorAccent">#263238</color>
+    <color name="bg_color">#000000</color>
+
+
+    <!-- Black -->
+    <color name="material_light_black">#FFFFFF</color>
+    <!-- White -->
+    <color name="material_light_white">#383838</color>
+
+
+    <color name="card_bg_color1">#4E342E</color>
+    <color name="card_bg_color2">#757575</color>
+    <color name="card_bg_color3">#78909C</color>
+
+
+</resources>

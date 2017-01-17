@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher"
+        android:shortcutDisabledMessage="@string/shortcut1_disabled"
+        android:shortcutId="shortcut1"
+        android:shortcutLongLabel="@string/shortcut1_long"
+        android:shortcutShortLabel="@string/shortcut1">
+        <intent
+            android:action="action1"
+            android:targetClass="com.zncm.mxgtd.ui.QuickAddActivity"
+            android:targetPackage="com.zncm.mxgtd">
+            <extra
+                android:name="action"
+                android:value="ADD_RD" />
+        </intent>
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher"
+        android:shortcutDisabledMessage="@string/shortcut2_disabled"
+        android:shortcutId="shortcut2"
+        android:shortcutLongLabel="@string/shortcut2_long"
+        android:shortcutShortLabel="@string/shortcut2">
+        <intent
+            android:action="action2"
+            android:targetClass="com.zncm.mxgtd.ui.QuickAddActivity"
+            android:targetPackage="com.zncm.mxgtd">
+            <extra
+                android:name="action"
+                android:value="ADD_PROGRESS" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher"
+        android:shortcutDisabledMessage="@string/shortcut3_disabled"
+        android:shortcutId="shortcut3"
+        android:shortcutLongLabel="@string/shortcut3_long"
+        android:shortcutShortLabel="@string/shortcut3">
+        <intent
+            android:action="action3"
+            android:targetClass="com.zncm.mxgtd.ui.SearchActivity"
+            android:targetPackage="com.zncm.mxgtd">
+
+        </intent>
+    </shortcut>
+
+
+
+
+</shortcuts>

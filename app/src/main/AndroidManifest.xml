@@ -11,17 +11,56 @@
         android:theme="@style/MXAppTheme">
         <activity
             android:name="com.zncm.mxgtd.ui.UIMainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/MainTheme"
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity android:name="com.zncm.mxgtd.ui.PjActivity" />
         <activity android:name="com.zncm.mxgtd.ui.RdActivity" />
         <activity android:name="com.zncm.mxgtd.ui.PjAddActivity" />
+        <activity
+            android:name="com.zncm.mxgtd.ui.TextActivity"
+
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.zncm.mxgtd.ui.SettingNew"
+            android:label="设置"
+            android:theme="@style/MyMaterialSettings" />
         <activity android:name="com.zncm.mxgtd.ui.TkAddActivity">
+
+
+        </activity>
+        <activity android:name="com.zncm.mxgtd.ui.ProjectDetailsActivity">
+
+        </activity>
+
+        <activity android:name="com.zncm.mxgtd.ui.SearchActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.TkDetailsActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.MySettingActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.LikeActivity" />
+        <activity android:name="com.zncm.mxgtd.ui.ItemDetailsActivity"
+            android:launchMode="singleTask"
+            />
+
+
+
+
+        <activity
+            android:name="com.zncm.mxgtd.ui.QuickAddActivity"
+            android:theme="@style/AppTheme.Translucent" />
+        <activity
+            android:name="com.zncm.mxgtd.ui.ShareActivity"
+            android:theme="@style/AppTheme.Translucent" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND"></action>
 
@@ -29,15 +68,8 @@
 
                 <data android:mimeType="text/*"></data>
             </intent-filter>
+            </activity>
 
-        </activity>
-        <activity android:name="com.zncm.mxgtd.ui.ProjectDetailsActivity">
-
-        </activity>
-
-        <activity android:name="com.zncm.mxgtd.ui.TkDetailsActivity" />
-        <activity android:name="com.zncm.mxgtd.ui.MySettingActivity" />
-        <activity android:name="com.zncm.mxgtd.ui.LikeActivity" />
 
         <receiver android:name="com.zncm.mxgtd.receiver.RemindReceiver" />
     </application>

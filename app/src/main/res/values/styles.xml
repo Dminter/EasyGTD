@@ -9,11 +9,12 @@
         <item name="android:textColorPrimary">@color/accent</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:itemBackground">@color/white</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorSwitchThumbNormal">@color/red</item>
-        <item name="android:colorForeground">@color/colorPrimary</item>
+        <item name="android:colorForeground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/SlideRightAnimation</item>
     </style>
 
     <style name="MainTheme" parent="MXAppTheme">
@@ -29,6 +30,31 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="Theme.AppCompat.Translucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+
+
+    <style name="AppTheme.Translucent" parent="Theme.AppCompat.Translucent">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:textColorPrimary">@color/material_light_white</item>
+        <item name="android:itemBackground">@color/material_light_white</item>
+        <item name="android:textColor">@color/material_light_black</item>
+        <item name="colorControlNormal">@color/material_green_200</item>
+        <item name="colorSwitchThumbNormal">@color/material_red_400</item>
+        <item name="android:colorForeground">@color/material_yellow_400</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="md_dark_theme">false</item>
+    </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
@@ -46,19 +72,21 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/row_height</item>
     </style>
+
     <style name="Material_Card_View">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">60dp</item>
-        <item name="android:layout_margin">6dp</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="task_level">
         <item name="android:layout_width">5.0dip</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-
-
 
 
     <style name="padding_left_right">
@@ -152,5 +180,10 @@
         <item name="android:singleLine">true</item>
     </style>
 
-
+    <style name="MyMaterialSettings" parent="MaterialSettingsTheme">
+        <item name="msColorPrimary">@color/colorPrimary</item>
+        <item name="msColorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="msColorAccent">@color/colorAccent</item>
+        <item name="msColorHeader">@color/colorAccent</item>
+    </style>
 </resources>

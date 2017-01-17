@@ -14,8 +14,8 @@
 
     <dimen name="note_content_spacing">16dp</dimen>
 
-    <dimen name="card_corner_radius">1dp</dimen>
-    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_elevation">0dp</dimen>
 
 
     <dimen name="ts_big">28sp</dimen>

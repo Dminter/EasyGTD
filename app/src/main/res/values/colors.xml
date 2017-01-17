@@ -6,9 +6,46 @@
     <color name="bt_bg">#FAFBFB</color>
     <color name="bt_line">#D5D5D5</color>
 
-    <color name="colorPrimary">@color/material_yellow_800</color>
-    <color name="colorPrimaryDark">@color/material_yellow_800</color>
-    <color name="colorAccent">@color/material_yellow_800</color>
+    <color name="colorPrimary">@color/colorKeeptb</color>
+    <color name="colorPrimaryDark">@color/colorKeeptb</color>
+    <color name="colorAccent">@color/colorKeeptbdk</color>
+
+    <color name="colorBgprogress">@color/colorKeep1</color>
+    <color name="colorBgcheck">@color/colorKeep3</color>
+    <color name="colorBgremind">@color/colorKeep4</color>
+    <color name="colorBglike">@color/colorKeep2</color>
+    <color name="colorSearch">@color/colorKeep6</color>
+
+
+    <color name="colorBgcheck_">@color/colorKeep3_</color>
+    <color name="colorBgremind_">@color/colorKeep4_</color>
+
+
+
+
+    <color name="colorKeep1">#F9F9F9</color>
+    <color name="colorKeep2">#FD8980</color>
+    <color name="colorKeep3">#FDD080</color>
+    <color name="colorKeep4">#CBFD8F</color>
+    <color name="colorKeep5">#A6FDEA</color>
+    <color name="colorKeep6">#7FD7FE</color>
+    <color name="colorKeep7">#CED7DB</color>
+
+
+    <color name="colorKeep3_">#64fdd080</color>
+    <color name="colorKeep4_">#64cbfd8f</color>
+
+
+
+
+
+
+    <color name="colorKeepbg">#E5E5E5</color>
+    <color name="colorKeeptb">#FDBA01</color>
+    <color name="colorKeeptbdk">#F89E01</color>
+
+    <color name="colorKeeptextb">#202020</color>
+    <color name="colorKeeptextg">#6A6A6A</color>
 
 
     <color name="swipe_color1">#E6302C</color>

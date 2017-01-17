@@ -5,6 +5,24 @@
     <string name="app_author">浙水之南</string>
 
 
+    <string name="color_palette">主题色</string>
+    <string name="colors">主题色</string>
+    <dimen name="md_colorchooser_circlesize">56dp</dimen>
+    <dimen name="md_preference_content_inset">16dp</dimen>
+    <dimen name="md_simpleitem_height">62dp</dimen>
+    <dimen name="md_simplelist_icon">40dp</dimen>
+    <dimen name="md_simplelist_icon_margin">16dp</dimen>
+    <dimen name="md_simplelist_textsize">18sp</dimen>
+    <string name="md_back_label">返回</string>
+    <string name="md_cancel_label">取消</string>
+    <string name="md_choose_label">选择</string>
+    <string name="md_custom_label">自定义</string>
+    <string name="md_done_label">完成</string>
+    <string name="md_error_label">错误</string>
+    <string name="md_presets_label">常用</string>
+    <string name="md_storage_perm_error">没有文件读取权限</string>
+    <string name="new_folder">新建文件夹</string>
+
     <string-array name="reminds_array">
         <item>10秒</item>
         <item>30秒</item>
@@ -61,4 +79,21 @@
         <item>每年</item>
     </string-array>
 
+
+    <string name="shortcut1">新提醒</string>
+    <string name="shortcut1_long">@string/shortcut1</string>
+    <string name="shortcut1_disabled">@string/shortcut1</string>
+
+    <string name="shortcut2">新进展</string>
+    <string name="shortcut2_long">@string/shortcut2</string>
+    <string name="shortcut2_disabled">@string/shortcut2</string>
+
+    <string name="shortcut3">搜索</string>
+    <string name="shortcut3_long">@string/shortcut3</string>
+    <string name="shortcut3_disabled">@string/shortcut3</string>
+
+
+    <string name="shortcut4">收藏的活动</string>
+    <string name="shortcut4_long">@string/shortcut4</string>
+    <string name="shortcut4_disabled">@string/shortcut4</string>
 </resources>
