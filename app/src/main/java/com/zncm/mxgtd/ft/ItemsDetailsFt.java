@@ -35,20 +35,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by MX on 3/24 0024.
- */
+
 public class ItemsDetailsFt extends Fragment {
     private TaskData taskData;
     private DetailsData data;
     private int current = 0;
     private ArrayList<DetailsData> itemsList;
     private ViewPager mViewPager;
-    SamplePagerAdapter mAdapter;
-    int size;
-    int allSize;
-    ItemDetailsActivity ctx;
-    boolean isSingle = false;
+    private SamplePagerAdapter mAdapter;
+    private int size;
+    private int allSize;
+    private ItemDetailsActivity ctx;
+    private boolean isSingle = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -198,14 +196,10 @@ public class ItemsDetailsFt extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-
         if (item == null || item.getTitle() == null) {
             return false;
         }
-
-
         DetailsData tmpData = itemsList.get(mViewPager.getCurrentItem());
-
         switch (item.getItemId()) {
             case 1:
                 break;
@@ -231,7 +225,6 @@ public class ItemsDetailsFt extends Fragment {
                 }
                 break;
         }
-
         return false;
     }
 

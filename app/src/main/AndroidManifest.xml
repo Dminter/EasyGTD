@@ -46,7 +46,6 @@
 
         <activity android:name="com.zncm.mxgtd.ui.SearchActivity" />
         <activity android:name="com.zncm.mxgtd.ui.TkDetailsActivity" />
-        <activity android:name="com.zncm.mxgtd.ui.MySettingActivity" />
         <activity android:name="com.zncm.mxgtd.ui.LikeActivity" />
         <activity android:name="com.zncm.mxgtd.ui.ItemDetailsActivity"
             android:launchMode="singleTask"
