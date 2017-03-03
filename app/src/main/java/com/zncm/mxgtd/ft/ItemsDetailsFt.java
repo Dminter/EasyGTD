@@ -26,6 +26,7 @@ import com.zncm.mxgtd.data.TaskData;
 import com.zncm.mxgtd.ui.ItemDetailsActivity;
 import com.zncm.mxgtd.ui.TextActivity;
 import com.zncm.mxgtd.utils.DbUtils;
+import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.NotiHelper;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.HackyViewPager;
@@ -161,13 +162,29 @@ public class ItemsDetailsFt extends Fragment {
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         int paddingPx = XUtil.dip2px(15);
         linearLayout.setPadding(paddingPx, paddingPx, paddingPx, paddingPx);
+
+
+        if (!MySp.getShowSimple()) {
+            TextView tvTime = new TextView(ctx);
+            tvTime.setTextSize(XUtil.dip2px(4));
+            tvTime.setTextColor(getResources().getColor(R.color.colorKeeptextg));
+            if (data.getTime() != null) {
+                tvTime.setText(XUtil.getDateYMDEHM(data.getTime()));
+                tvTime.setPadding(0, 0, 0, paddingPx);
+                linearLayout.addView(tvTime);
+            }
+        }
+
+
         TextView textView = new TextView(ctx);
-        textView.setTextSize(XUtil.dip2px(8));
+        textView.setTextSize(XUtil.dip2px(6));
         textView.setTextIsSelectable(true);
         if (data != null && XUtil.notEmptyOrNull(data.getContent())) {
             textView.setText(data.getContent());
         }
         linearLayout.addView(textView);
+
+
         scrollView.addView(linearLayout);
         return scrollView;
     }

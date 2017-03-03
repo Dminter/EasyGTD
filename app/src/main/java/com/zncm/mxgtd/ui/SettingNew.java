@@ -34,6 +34,7 @@ import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
+import com.zncm.mxgtd.data.SpConstant;
 import com.zncm.mxgtd.ft.DetailsFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.utils.DbUtils;
@@ -93,6 +94,20 @@ public class SettingNew extends MaterialSettings {
                 MySp.setClipboardListen(isChecked);
             }
         }).setDefaultValue(MySp.getClipboardListen()));
+        addItem(new DividerItem(ctx));
+        addItem(new CheckboxItem(this, "").setTitle("简要显示").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChange(CheckboxItem cbi, boolean isChecked) {
+                MySp.setShowSimple(isChecked);
+            }
+        }).setDefaultValue(MySp.getShowSimple()));
+        addItem(new DividerItem(ctx));
+        addItem(new CheckboxItem(this, "").setTitle("回车保存").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChange(CheckboxItem cbi, boolean isChecked) {
+                MySp.put(SpConstant.isEnterSave, isChecked);
+            }
+        }).setDefaultValue(MySp.get(SpConstant.isEnterSave, Boolean.class, false)));
 
 
         addItem(new DividerItem(ctx));

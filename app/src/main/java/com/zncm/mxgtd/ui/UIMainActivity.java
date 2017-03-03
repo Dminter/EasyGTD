@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.util.TimeUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,6 +54,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
         super.onCreate(savedInstanceState);
         setSwipeBackOn(false);
         MyApplication.updateNightMode(MySp.getIsNight());
+
         initTitle();
         fragments.put(R.id.tab_done, new TasksFt());
         fragments.put(R.id.tab_book, new ProjectMainFt());
@@ -130,10 +130,10 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
     protected void onResume() {
         super.onResume();
         PlayRingTone.stopRing();
-        DbUtils.initRemind(this);
     }
 
     private void initTitle() {
+
         toolbar.setTitle(getResources().getString(R.string.app_name));
         toolbar.setNavigationIcon(null);
         DoubleClickImp.registerDoubleClickListener(toolbar,
@@ -149,6 +149,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
                     }
                 });
     }
+
 
     private void tabSelected(@IdRes int tabId) {
         fragment = fragmentManager.findFragmentByTag(String.valueOf(tabId));
