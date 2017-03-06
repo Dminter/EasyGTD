@@ -91,7 +91,13 @@ public class TkDetailsActivity extends BaseActivity {
             dayChange(false);
         } else if (item.getTitle().equals("next")) {
             dayChange(true);
+        } else if (item.getTitle().equals("edit")) {
+            Intent newIntent = null;
+            newIntent = new Intent(ctx, TkAddActivity.class);
+            newIntent.putExtra(Constant.KEY_PARAM_DATA, taskData);
+            startActivity(newIntent);
         }
+
 
         return true;
     }
@@ -114,6 +120,8 @@ public class TkDetailsActivity extends BaseActivity {
         if (XUtil.notEmptyOrNull(query) && query.startsWith("@")) {
             menu.add("previous").setIcon(XUtil.initIconWhite(Iconify.IconValue.md_navigate_before)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             menu.add("next").setIcon(XUtil.initIconWhite(Iconify.IconValue.md_navigate_next)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        } else if (!XUtil.notEmptyOrNull(query)) {
+            menu.add("edit").setIcon(XUtil.initIconWhite(Iconify.IconValue.md_mode_edit)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
         return super.onCreateOptionsMenu(menu);
     }
