@@ -187,7 +187,8 @@ public class SettingNew extends MaterialSettings {
             }
         }));
         addItem(new DividerItem(ctx));
-        addItem(new TextItem(ctx, "").setTitle("检查更新").setSubtitle("当前版本:" + getVersionName()).setOnclick(new TextItem.OnClickListener() {
+        String buildDate  = "2017-04-09 07:24:10";
+        addItem(new TextItem(ctx, "").setTitle("检查更新").setSubtitle("当前版本:" + getVersionName()+" @"+buildDate).setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem textItem) {
                 XUtil.openUrl(Constant.update_url);
