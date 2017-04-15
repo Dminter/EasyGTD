@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -30,12 +29,7 @@ import com.zncm.mxgtd.data.ProgressData;
 import com.zncm.mxgtd.data.ProjectData;
 import com.zncm.mxgtd.data.RemindData;
 import com.zncm.mxgtd.data.TaskData;
-import com.zncm.mxgtd.ui.LikeActivity;
-import com.zncm.mxgtd.ui.SettingNew;
 import com.zncm.mxgtd.ui.TkAddActivity;
-import com.zncm.mxgtd.ui.TkDetailsActivity;
-import com.zncm.mxgtd.ui.UIMainActivity;
-import com.zncm.mxgtd.utils.AlipayZeroSdk;
 import com.zncm.mxgtd.utils.DbUtils;
 import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
@@ -45,7 +39,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 

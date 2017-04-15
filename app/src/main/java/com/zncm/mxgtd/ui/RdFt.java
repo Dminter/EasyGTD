@@ -21,7 +21,7 @@ import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.WrapContentHeightViewPager;
 
 
-public class RdActivity extends Fragment {
+public class RdFt extends Fragment {
     private RemindFragment remindFragment;
     private RemindFragment remindOutFragment;
     private WrapContentHeightViewPager mViewPager;

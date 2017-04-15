@@ -251,6 +251,16 @@ public class DbUtils {
         return maxInt;
     }
 
+    public static Integer getMaxProgress() {
+        Integer maxInt = -1;
+        init();
+        try {
+            maxInt = Integer.parseInt(projectDao.queryRaw("SELECT max(id) from progressdata").getFirstResult()[0]);
+        } catch (Exception e) {
+        }
+        return maxInt;
+    }
+
     public static int getTkRows(int tk_id) {
         int progressInt = 0;
         int checkInt = 0;
@@ -513,6 +523,25 @@ public class DbUtils {
         return datas;
     }
 
+    public static ProgressData getProgressByTkId(int tkId) {
+        init();
+        ProgressData ret = null;
+        List<ProgressData> datas = new ArrayList<ProgressData>();
+        try {
+            QueryBuilder<ProgressData, Integer> builder = progressDao.queryBuilder();
+            builder.where().eq("tk_id", tkId).and().eq("status", EnumData.ProgressStatusEnum.NORMAL.getValue());
+            builder.limit(Constant.MAX_DB_QUERY);
+            datas = progressDao.query(builder.prepare());
+            if (XUtil.listNotNull(datas)) {
+                ret = datas.get(new Random().nextInt(datas.size()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+
     public static ProgressData getProgressLast() {
         init();
         ProgressData last = null;
@@ -531,6 +560,29 @@ public class DbUtils {
         }
         return last;
     }
+
+    public static ProgressData getProgressRandom() {
+        init();
+        ProgressData last = null;
+        List<ProgressData> datas = new ArrayList<ProgressData>();
+        try {
+            int maxRow = getMaxProgress();
+            QueryBuilder<ProgressData, Integer> builder = progressDao.queryBuilder();
+            builder.where().eq("status", EnumData.ProgressStatusEnum.NORMAL.getValue());
+            builder.where().idEq(new Random().nextInt(maxRow));
+            datas = progressDao.query(builder.prepare());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (XUtil.listNotNull(datas)) {
+            XUtil.debug("info-datas:" + datas);
+            last = datas.get(0);
+        }
+        return last;
+    }
+
+
+   
 
     public static ArrayList<ScanData> getCheckListPage(int tk_id, int pageIndex) {
         init();

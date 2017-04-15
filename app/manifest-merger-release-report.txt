@@ -74,7 +74,7 @@ activity#com.zncm.mxgtd.ui.PjActivity
 ADDED from AndroidManifest.xml:22:9
 	android:name
 		ADDED from AndroidManifest.xml:22:19
-activity#com.zncm.mxgtd.ui.RdActivity
+activity#com.zncm.mxgtd.ui.RdFt
 ADDED from AndroidManifest.xml:23:9
 	android:name
 		ADDED from AndroidManifest.xml:23:19

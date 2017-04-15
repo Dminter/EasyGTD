@@ -42,7 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UIMainActivity extends BaseActivity implements ColorChooserDialog.ColorCallback {
+public class MainActivity extends BaseActivity implements ColorChooserDialog.ColorCallback {
     private Fragment fragment = null;
     private Map<Integer, Fragment> fragments = new HashMap<>();
     FragmentManager fragmentManager;
@@ -54,11 +54,10 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
         super.onCreate(savedInstanceState);
         setSwipeBackOn(false);
         MyApplication.updateNightMode(MySp.getIsNight());
-
         initTitle();
         fragments.put(R.id.tab_done, new TasksFt());
         fragments.put(R.id.tab_book, new ProjectMainFt());
-        fragments.put(R.id.tab_remind, new RdActivity());
+        fragments.put(R.id.tab_remind, new RdFt());
         fragmentManager = getSupportFragmentManager();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setActiveTabColor(MySp.getTheme());
@@ -97,32 +96,36 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
         });
         ArrayList<ProjectData> pjList = DbUtils.getProjectDataAll();
         if (!XUtil.listNotNull(pjList)) {
-            DbUtils.savePj("生活");
-            DbUtils.savePj("工作");
-            DbUtils.savePj("学习");
-            DbUtils.savePj("积累");
-            DbUtils.savePj("健身");
-            DbUtils.savePj("旅游");
-            DbUtils.saveTk("便签");
-            DbUtils.saveTk("记录");
-            DbUtils.saveTk("电影");
-            DbUtils.saveTk("书籍");
-            DbUtils.saveTk("购物");
-            DbUtils.saveTk("旅行");
-            DbUtils.saveTk("清单");
-            DbUtils.saveTk("日记");
-            DbUtils.saveTk("跑步");
-            DbUtils.saveTk("日记");
-            DbUtils.saveTk("娱乐");
-            DbUtils.saveRd(1);
-            DbUtils.saveRd(5);
-            DbUtils.saveRd(30);
-            DbUtils.saveRd(60);
-            DbUtils.saveRd(1000);
-            DbUtils.saveRd(2000);
-            XUtil.tShort("数据初始化完毕~");
-            EventBus.getDefault().post(EnumData.RefreshEnum.MAIN.getValue());
+            initNoData();
         }
+    }
+
+    private void initNoData() {
+        DbUtils.savePj("生活");
+        DbUtils.savePj("工作");
+        DbUtils.savePj("学习");
+        DbUtils.savePj("积累");
+        DbUtils.savePj("健身");
+        DbUtils.savePj("旅游");
+        DbUtils.saveTk("便签");
+        DbUtils.saveTk("记录");
+        DbUtils.saveTk("电影");
+        DbUtils.saveTk("书籍");
+        DbUtils.saveTk("购物");
+        DbUtils.saveTk("旅行");
+        DbUtils.saveTk("清单");
+        DbUtils.saveTk("日记");
+        DbUtils.saveTk("跑步");
+        DbUtils.saveTk("日记");
+        DbUtils.saveTk("娱乐");
+        DbUtils.saveRd(1);
+        DbUtils.saveRd(5);
+        DbUtils.saveRd(30);
+        DbUtils.saveRd(60);
+        DbUtils.saveRd(1000);
+        DbUtils.saveRd(2000);
+        XUtil.tShort("数据初始化完毕~");
+        EventBus.getDefault().post(EnumData.RefreshEnum.MAIN.getValue());
     }
 
 
@@ -140,7 +143,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
                 new DoubleClickImp.OnDoubleClickListener() {
                     @Override
                     public void OnSingleClick(View v) {
-
+                        XUtil.tShort("双击刷新主页~");
                     }
 
                     @Override
@@ -193,7 +196,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
         searchView.setMenuItem(item);
         SubMenu sub = menu.addSubMenu("");
         sub.setIcon(XUtil.initIconWhite(Iconify.IconValue.md_more_vert));
-        sub.add(0, 5, 0, "回顾");
+        sub.add(0, 5, 0, "回顾今天");
         sub.add(0, 6, 0, "收藏");
         sub.add(0, 1, 0, "设置");
         sub.add(0, 2, 0, "切换主题");
@@ -217,7 +220,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
             case 2:
                 MySp.setIsNight(!MySp.getIsNight());
                 finish();
-                startActivity(new Intent(ctx, UIMainActivity.class));
+                startActivity(new Intent(ctx, MainActivity.class));
                 break;
             case 3:
                 if (AlipayZeroSdk.hasInstalledAlipayClient(ctx)) {
@@ -228,7 +231,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
                 break;
             case 4:
                 finish();
-                startActivity(new Intent(ctx, UIMainActivity.class));
+                startActivity(new Intent(ctx, MainActivity.class));
                 break;
             case 5:
                 Intent newIntent = new Intent(ctx, TkDetailsActivity.class);
@@ -259,7 +262,7 @@ public class UIMainActivity extends BaseActivity implements ColorChooserDialog.C
         int type = event.type;
         if (type == EnumData.RefreshEnum.MAIN.getValue()) {
             finish();
-            Intent intent = new Intent(ctx, UIMainActivity.class);
+            Intent intent = new Intent(ctx, MainActivity.class);
             startActivity(intent);
         }
     }

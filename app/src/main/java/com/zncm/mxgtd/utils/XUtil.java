@@ -677,20 +677,7 @@ public class XUtil {
         return version;
     }
 
-    public static void donateDlg(final Activity ctx) {
-        new MaterialDialog.Builder(ctx)
-                .title("打赏")
-                .content("支付宝: 1130724659@qq.com\n*水娟\n")
-                .positiveText("复制支付宝号")
-                .neutralText("残忍拒绝!!!")
-                .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        copyText(ctx, "1130724659@qq.com");
-                    }
-                })
-                .show();
-    }
+
 
     public static void rateUs(Activity ctx) {
         try {
