@@ -48,6 +48,7 @@ public class NotiHelper {
                 .setOngoing(false)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台笔记本,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
                 .setSmallIcon(R.drawable.ic_launcher);//设置通知小ICON
         if (bRing) {
+
 //            playBig(ctx);
             mBuilder.setDefaults(Notification.DEFAULT_VIBRATE)//向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合
                     .setSound(uri);       //Notification.DEFAULT_SOUND 添加声音 // requires VIBRATE permission
@@ -125,6 +126,7 @@ public class NotiHelper {
             }
             rdDao.update(remindData);
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         RemindReceiver.sysDlg(context, remindData);

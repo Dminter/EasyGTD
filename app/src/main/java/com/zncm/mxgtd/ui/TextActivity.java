@@ -7,6 +7,7 @@ import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.ft.TextFt;
+import com.zncm.mxgtd.utils.PlayRingTone;
 import com.zncm.mxgtd.utils.XUtil;
 
 import java.io.Serializable;
@@ -46,6 +47,12 @@ public class TextActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, textFt)
                 .commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        PlayRingTone.stopRing();
     }
 
     @Override

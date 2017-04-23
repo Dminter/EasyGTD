@@ -20,31 +20,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.alibaba.fastjson.JSON;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.RemindData;
 import com.zncm.mxgtd.data.TaskData;
-import com.zncm.mxgtd.ui.ItemDetailsActivity;
 import com.zncm.mxgtd.ui.MyApplication;
 import com.zncm.mxgtd.ui.TextActivity;
-import com.zncm.mxgtd.ui.TkDetailsActivity;
 import com.zncm.mxgtd.utils.DbUtils;
 import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.NotiHelper;
 import com.zncm.mxgtd.utils.PlayRingTone;
 import com.zncm.mxgtd.utils.XUtil;
-import com.zncm.mxgtd.utils.db.DatabaseHelper;
 
-import java.io.Serializable;
 import java.util.Random;
 
 public class RemindReceiver extends BroadcastReceiver {
@@ -59,26 +51,31 @@ public class RemindReceiver extends BroadcastReceiver {
                 //系统对话框被拦截,就只能这样了,为保证这个不被拦截,再提示一下
 //                NotifyHelper.notify(context, nm, remindData);
 //                String title, String content, String ticker, Intent intent, boolean autoCancel, boolean bRing, int notifyId
-//                NotiHelper.notifyRemind(context, remindData);
+                NotiHelper.notifyRemind(context, remindData);
 
-                DatabaseHelper databaseHelper = null;
-                try {
-                    databaseHelper = OpenHelperManager.getHelper(MyApplication.getInstance().ctx, DatabaseHelper.class);
-                    RuntimeExceptionDao<RemindData, Integer> rdDao = databaseHelper.getRdDao();
-                    if (remindData.getType() == 0) {//重复的不能过期
-                        remindData.setStatus(EnumData.StatusEnum.OUTDATE.getValue());
-                    }
-                    rdDao.update(remindData);
-                } catch (Exception e) {
-                }
+//                DatabaseHelper databaseHelper = null;
+//                try {
+//                    databaseHelper = OpenHelperManager.getHelper(MyApplication.getInstance().ctx, DatabaseHelper.class);
+//                    RuntimeExceptionDao<RemindData, Integer> rdDao = databaseHelper.getRdDao();
+//                    if (remindData.getType() == 0) {//重复的不能过期
+//                        remindData.setStatus(EnumData.StatusEnum.OUTDATE.getValue());
+//                    }
+//                    rdDao.update(remindData);
+//                } catch (Exception e) {
+//                }
 
 
-                Intent intent2 = new Intent(context, TextActivity.class);
-                intent2.putExtra("text", remindData.getContent());
-                DetailsData tmp = new DetailsData();
-                tmp.setTime(remindData.getTime());
-                intent.putExtra(Constant.KEY_PARAM_DATA, tmp);
-                NotiHelper.noti(remindData.getContent(), "", "", intent2, false, !MySp.getIsBigRing(), new Random().nextInt());
+//                Intent intent2 = new Intent(context, TextActivity.class);
+//                intent2.putExtra("text", remindData.getContent());
+//                DetailsData tmp = new DetailsData();
+//                tmp.setTime(remindData.getTime());
+//                intent.putExtra(Constant.KEY_PARAM_DATA, tmp);
+//                NotiHelper.noti(remindData.getContent(), "", "", intent2, false, !MySp.getIsBigRing(), new Random().nextInt());
+
+//                if (MySp.getIsBigRing()) {
+//                    PlayRingTone.playRing();
+//                }
+
 //                TaskData taskData = DbUtils.getTkById(remindData.getTk_id());
 //                DetailsData tmp = new DetailsData();
 //                tmp.setContent(remindData.getContent());
@@ -98,6 +95,15 @@ public class RemindReceiver extends BroadcastReceiver {
 
 //        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 //        final Ringtone ringtone = RingtoneManager.getRingtone(context, notification);
+
+        final Intent intent2 = new Intent(context, TextActivity.class);
+        intent2.putExtra("text", remindData.getContent());
+        DetailsData tmp = new DetailsData();
+        tmp.setTime(remindData.getTime());
+        intent2.putExtra(Constant.KEY_PARAM_DATA, tmp);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        NotiHelper.noti(remindData.getContent(), "", "", intent2, false, !MySp.getIsBigRing(), new Random().nextInt());
+
         if (MySp.getIsBigRing()) {
             PlayRingTone.playRing();
         }
@@ -123,13 +129,9 @@ public class RemindReceiver extends BroadcastReceiver {
 //                            select.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                            context.startActivity(select);
 //                        }
-                        Intent intent2 = new Intent(context, TextActivity.class);
-                        intent2.putExtra("text", remindData.getContent());
-                        DetailsData tmp = new DetailsData();
-                        tmp.setTime(remindData.getTime());
-                        intent2.putExtra(Constant.KEY_PARAM_DATA, tmp);
-                        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                         context.startActivity(intent2);
+
                     }
 
                     @Override
