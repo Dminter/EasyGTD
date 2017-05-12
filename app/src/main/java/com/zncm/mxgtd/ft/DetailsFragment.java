@@ -48,7 +48,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ *详情界面，任务【进展，清单，提醒，合并显示】
+ */
 public class DetailsFragment extends BaseListFragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private ProjectAdapter mAdapter;
     private Activity ctx;
@@ -214,9 +216,14 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                                                         return;
                                                     }
                                                     if (XUtil.notEmptyOrNull(query)) {
-                                                        Intent intent = new Intent(ctx, TextActivity.class);
-                                                        intent.putExtra(Constant.KEY_PARAM_DATA, tmp);
-                                                        intent.putExtra("text", tmp.getContent());
+//                                                        Intent intent = new Intent(ctx, TextActivity.class);
+//                                                        intent.putExtra(Constant.KEY_PARAM_DATA, tmp);
+//                                                        intent.putExtra("text", tmp.getContent());
+//                                                        startActivity(intent);
+                                                        Intent intent = new Intent(ctx, ItemDetailsActivity.class);
+                                                        intent.putExtra("DetailsData", tmp);
+                                                        intent.putExtra("size", 1);
+                                                        intent.putExtra(Constant.KEY_CURRENT_POSITION, 0);
                                                         startActivity(intent);
                                                     } else {
                                                         Intent intent = new Intent(ctx, ItemDetailsActivity.class);
@@ -244,7 +251,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
         addButton.setOnLongClickListener(new View.OnLongClickListener() {
                                              @Override
                                              public boolean onLongClick(View v) {
-                                                 new MaterialDialog.Builder(ctx)
+                                                 XUtil.themeMaterialDialog(ctx)
                                                          .items(new String[]{"清单", "提醒"})
                                                          .itemsCallback(new MaterialDialog.ListCallback() {
                                                              @Override
@@ -273,7 +280,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
     public void operateCheckListData(final CheckListData data, final int pos) {
         boolean isLike = DbUtils.isLiked(EnumData.BusinessEnum.CHECK_LIST.getValue(), data.getId());
         final boolean isChecked = EnumData.StatusEnum.OFF.getValue() == data.getStatus();
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "未完成" : "已完成", "编辑", "删除", isLike ? "移除收藏" : "收藏", "复制", "笔记本"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -296,10 +303,9 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                                 add3Dlg(data, pos);
                                 break;
                             case 2:
-                                new MaterialDialog.Builder(ctx)
+                               XUtil.themeMaterialDialog(ctx)
                                         .title("删除确认?")
                                         .content(data.getTitle())
-                                        .theme(Theme.LIGHT)
                                         .positiveText("确定")
                                         .negativeText("取消")
                                         .callback(new MaterialDialog.ButtonCallback() {
@@ -334,7 +340,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
 
     public void operateProgressData(final ProgressData data, final int position) {
         boolean isLike = DbUtils.isLiked(EnumData.BusinessEnum.PROGRESS.getValue(), data.getId());
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{"编辑", "删除", isLike ? "移除收藏" : "收藏", "复制", "笔记本"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -344,9 +350,8 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                                 add1Dlg(data, position);
                                 break;
                             case 1:
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("删除确认?").content(data.getContent())
-                                        .theme(Theme.LIGHT)
                                         .positiveText("确定")
                                         .negativeText("取消")
                                         .callback(new MaterialDialog.ButtonCallback() {
@@ -384,7 +389,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
 
     public void operateRemindData(final RemindData data, final int pos) {
         final boolean isChecked = EnumData.StatusEnum.OUTDATE.getValue() == data.getStatus();
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "提醒" : "不提醒", "复制", "编辑", "删除", "笔记本"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -543,7 +548,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setHint("输入进展...");
         editText.setLines(5);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         if (bUpadte) {
             editText.setText(data.getContent());
             editText.setSelection(data.getContent().length());
@@ -579,7 +584,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
 
         });
         view.addView(editText);
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("保存继续")
                 .negativeText(bUpadte ? "修改" : "添加")
@@ -677,7 +682,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
         View view = mInflater.inflate(R.layout.view_remind_dlg, null);
         final EditText editText = (EditText) view.findViewById(R.id.editText);
         XUtil.autoKeyBoardShow(editText);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setLines(2);
         editText.setHint("提醒内容...");
         editText.setBackgroundDrawable(new BitmapDrawable());
@@ -724,7 +729,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
             spTime.setVisibility(View.GONE);
             spTimeRepeat.setSelection(data.getType());
         }
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText(bUpadte ? "修改" : "添加")
                 .negativeText("提醒时间")
@@ -938,7 +943,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
         XUtil.autoKeyBoardShow(editText);
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setLines(5);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setHint("输入安排...");
         if (bUpadte) {
             editText.setText(data.getTitle());
@@ -946,7 +951,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
         }
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("保存继续")
                 .negativeText(bUpadte ? "修改" : "添加")

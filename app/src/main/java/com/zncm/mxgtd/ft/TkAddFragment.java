@@ -211,7 +211,7 @@ public class TkAddFragment extends BaseDbFragment implements View.OnClickListene
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setLines(5);
         editText.setHint("输入...");
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         if (etId == 1) {
             editText.setText(data.getTitle());
             editText.setSelection(data.getTitle().length());

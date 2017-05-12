@@ -2,6 +2,7 @@ package com.zncm.mxgtd.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
@@ -52,6 +53,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
         setSwipeBackOn(false);
         MyApplication.updateNightMode(MySp.getIsNight());
         initTitle();
@@ -60,7 +65,11 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         fragments.put(R.id.tab_remind, new RdFt());
         fragmentManager = getSupportFragmentManager();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        bottomBar.setActiveTabColor(MySp.getTheme());
+        if (MySp.getIsNight()){
+            bottomBar.setActiveTabColor(getResources().getColor(R.color.material_light_black));
+        }else {
+            bottomBar.setActiveTabColor(MySp.getTheme());
+        }
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
@@ -199,7 +208,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         sub.add(0, 5, 0, "回顾今天");
         sub.add(0, 6, 0, "收藏");
         sub.add(0, 1, 0, "设置");
-        sub.add(0, 2, 0, "切换主题");
+        sub.add(0, 2, 0, "白天/夜间");
         sub.add(0, 7, 0, "主题色");
         sub.add(0, 4, 0, "首页刷新");
         sub.add(0, 3, 0, "打赏");
@@ -265,6 +274,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
             Intent intent = new Intent(ctx, MainActivity.class);
             startActivity(intent);
         }
+
+
     }
 
 

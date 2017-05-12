@@ -236,7 +236,7 @@ public class EnumData {
 
     public enum RefreshEnum {
 
-        PROJECT(1, "project"), TASK(2, "task"), SETTING_PWD(3, "setting_pwd"), PjInfo(4, "setting_pwd"), MAIN(5, "MAIN");
+        PROJECT(1, "project"), TASK(2, "task"), SETTING_PWD(3, "setting_pwd"), PjInfo(4, "setting_pwd"), MAIN(5, "MAIN"), MAIN_ITEM(6, "MAIN_ITEM");
         private int value;
         private String strName;
 
@@ -257,7 +257,7 @@ public class EnumData {
 
 
     public enum DetailBEnum {
-        check(1, "set"), progress(2, "setting_check"), remind(3, "check");
+        check(1, "check("), progress(2, "progress"), remind(3, "remind"), like(4, "like");
         private int value;
         private String strName;
 

@@ -30,6 +30,9 @@ import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.NotiHelper;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.HackyViewPager;
+import com.zncm.mxgtd.view.PinchZoomTextView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,14 +63,20 @@ public class ItemsDetailsFt extends Fragment {
         size = ctx.getIntent().getExtras().getInt("size");
         current = ctx.getIntent().getExtras().getInt(Constant.KEY_CURRENT_POSITION);
         if (tmp != null && tmp instanceof DetailsData) {
-            data = (DetailsData) dataParam;
+            data = (DetailsData) tmp;
             size = 1;
             current = 1;
             isSingle = true;
         }
         itemsList = new ArrayList<>();
-        itemsList = (ArrayList<DetailsData>) DbUtils.getDetailsDatas(taskData.getId(), 0, size);
-        allSize = DbUtils.getTkRows(taskData.getId());
+        if (taskData!=null){
+            itemsList = (ArrayList<DetailsData>) DbUtils.getDetailsDatas(taskData.getId(), 0, size);
+            allSize = DbUtils.getTkRows(taskData.getId());
+        }else {
+            itemsList.add(data);
+            allSize =1;
+        }
+
         mViewPager = new HackyViewPager(getActivity());
         mAdapter = new SamplePagerAdapter(itemsList);
         mViewPager.setAdapter(mAdapter);
@@ -86,6 +95,8 @@ public class ItemsDetailsFt extends Fragment {
                         itemsList.addAll(items);
                         mAdapter.setItems(itemsList);
                     }
+                }else {
+                    mAdapter.setItems(itemsList);
                 }
                 initTitle();
             }
@@ -101,7 +112,9 @@ public class ItemsDetailsFt extends Fragment {
     }
 
     private void initTitle() {
-        ctx.toolbar.setTitle(taskData.getTitle() + "  " + (current + 1) + "/" + allSize);
+        if (taskData!=null){
+            ctx.toolbar.setTitle(taskData.getTitle() + "  " + (current + 1) + "/" + allSize);
+        }
     }
 
     class SamplePagerAdapter extends PagerAdapter {
@@ -156,7 +169,7 @@ public class ItemsDetailsFt extends Fragment {
     private ScrollView initViews() {
         ScrollView scrollView = new ScrollView(ctx);
         scrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
-        scrollView.setBackgroundColor(getResources().getColor(R.color.white));
+        scrollView.setBackgroundColor(getResources().getColor(R.color.material_light_white));
         LinearLayout linearLayout = new LinearLayout(ctx);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -176,8 +189,10 @@ public class ItemsDetailsFt extends Fragment {
         }
 
 
-        TextView textView = new TextView(ctx);
-        textView.setTextSize(XUtil.dip2px(6));
+        PinchZoomTextView textView = new PinchZoomTextView(ctx);
+//        textView.setTextSize(XUtil.dip2px(6));
+        textView.setTextColor(getResources().getColor(R.color.material_light_black));
+        textView.setTextSize(MySp.getFontSize());
         textView.setTextIsSelectable(true);
         if (data != null && XUtil.notEmptyOrNull(data.getContent())) {
             textView.setText(data.getContent());
@@ -201,10 +216,12 @@ public class ItemsDetailsFt extends Fragment {
 
         SubMenu sub = menu.addSubMenu("");
         sub.setIcon(XUtil.initIconWhite(Iconify.IconValue.md_more_vert));
+        sub.add(0, 1, 0, "复制");
         sub.add(0, 2, 0, "分享");
         sub.add(0, 3, 0, "收藏");
         sub.add(0, 4, 0, "贴到通知栏");
         sub.add(0, 5, 0, "详情");
+        sub.add(0, 6, 0, "删除");
         sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
     }
@@ -217,8 +234,12 @@ public class ItemsDetailsFt extends Fragment {
             return false;
         }
         DetailsData tmpData = itemsList.get(mViewPager.getCurrentItem());
+        if (tmpData == null) {
+            return false;
+        }
         switch (item.getItemId()) {
             case 1:
+                XUtil.copyText(ctx,tmpData.getContent());
                 break;
             case 2:
                 XUtil.sendTo(ctx, tmpData.getContent());
@@ -235,19 +256,60 @@ public class ItemsDetailsFt extends Fragment {
                 break;
 
             case 5:
-                if (data.getTime() != null) {
-                    StringBuffer stringInfo = new StringBuffer();
-                    stringInfo.append(XUtil.getDateYMDEHM(tmpData.getTime()));
-                    showInfo(stringInfo.toString());
-                }
+                    showInfo(tmpData);
                 break;
+
+            case 6:
+                DbUtils.delByDetailBEnum(tmpData.getBusiness_type(),tmpData.getId());
+                XUtil.tShort("已删除~"+tmpData.getContent());
+                tmpData.setContent("已删除~");
+                itemsList.set(mViewPager.getCurrentItem(),tmpData);
+                mAdapter.setItems(itemsList);
+//                /**
+//                 *删除后刷新主界面，更新--这个会导致界面定位有问题，故此不加
+//                 */
+//                EventBus.getDefault().post(new RefreshEvent(EnumData.RefreshEnum.MAIN_ITEM.getValue()));
+                break;
+
         }
         return false;
     }
 
-    private void showInfo(String content) {
-        new MaterialDialog.Builder(ctx)
-                .content(content)
+    private void showInfo(DetailsData data) {
+
+        ScrollView scrollView = new ScrollView(ctx);
+        scrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+        scrollView.setBackgroundColor(getResources().getColor(R.color.material_light_white));
+        LinearLayout linearLayout = new LinearLayout(ctx);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        int paddingPx = XUtil.dip2px(15);
+        linearLayout.setPadding(paddingPx, paddingPx, paddingPx, paddingPx);
+
+        TextView tvTime = new TextView(ctx);
+        tvTime.setTextSize(XUtil.dip2px(4));
+        tvTime.setTextColor(getResources().getColor(R.color.colorKeeptextg));
+        if (data.getTime() != null) {
+            tvTime.setText(XUtil.getDateYMDEHM(data.getTime()));
+            tvTime.setPadding(0, 0, 0, paddingPx);
+            linearLayout.addView(tvTime);
+        }
+
+        TextView textView = new TextView(ctx);
+        textView.setTextSize(XUtil.dip2px(6));
+        textView.setTextColor(getResources().getColor(R.color.material_light_black));
+        textView.setTextIsSelectable(true);
+        if (data != null && XUtil.notEmptyOrNull(data.getContent())) {
+            textView.setText(data.getContent());
+        }
+        linearLayout.addView(textView);
+
+
+        scrollView.addView(linearLayout);
+
+
+        XUtil.themeMaterialDialog(ctx)
+                .customView(scrollView,true)
                 .positiveText("知")
                 .show();
     }

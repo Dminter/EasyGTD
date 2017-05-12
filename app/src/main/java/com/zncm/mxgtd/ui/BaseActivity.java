@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setTitle("");
-            toolbar.setTitleTextColor(getResources().getColor(R.color.material_light_white));
+            toolbar.setTitleTextColor( ctx.getResources().getColor(R.color.white));
 //            toolbar.setBackgroundColor(getResources().getColor(R.color.material_blue_400));
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.md_nav_back);

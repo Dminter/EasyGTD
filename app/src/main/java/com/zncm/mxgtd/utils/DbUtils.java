@@ -948,6 +948,38 @@ public class DbUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }    public static void delByDetailBEnum(int business_type, int id) {
+        init();
+        try {
+
+
+            if (EnumData.DetailBEnum.progress.getValue() == business_type) {
+                UpdateBuilder updateBuilder = progressDao.updateBuilder();
+                updateBuilder.where().eq("id", id);
+                updateBuilder.updateColumnValue("status", EnumData.ProgressStatusEnum.DEL.getValue());
+                updateBuilder.update();
+            } else if (EnumData.DetailBEnum.check.getValue() == business_type) {
+                UpdateBuilder updateBuilder = clDao.updateBuilder();
+                updateBuilder.where().eq("id", id);
+                updateBuilder.updateColumnValue("status", EnumData.StatusEnum.DEL.getValue());
+                updateBuilder.update();
+            }else if (EnumData.DetailBEnum.remind.getValue() == business_type) {
+                UpdateBuilder updateBuilder = rdDao.updateBuilder();
+                updateBuilder.where().eq("id", id);
+                updateBuilder.updateColumnValue("status", EnumData.StatusEnum.DEL.getValue());
+                updateBuilder.update();
+            }else if (EnumData.DetailBEnum.like.getValue() == business_type) {
+                UpdateBuilder updateBuilder = likeDao.updateBuilder();
+                updateBuilder.where().eq("id", id);
+                updateBuilder.updateColumnValue("status", EnumData.StatusEnum.DEL.getValue());
+                updateBuilder.update();
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

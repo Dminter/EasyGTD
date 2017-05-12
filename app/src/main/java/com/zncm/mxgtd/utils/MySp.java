@@ -156,7 +156,16 @@ public class MySp extends MySharedPreferences {
     }
 
     public static Integer getTheme() {
-        return getInt(getSharedPreferences(), Key.theme.toString(), -10177034);
+        if (MySp.getIsNight()){
+            /**
+             *主题色，黑色
+             */
+            return -13092808;
+        }else {
+            return getInt(getSharedPreferences(), Key.theme.toString(), -10177034);
+        }
+
+
     }
 
     public static void setPwd(String pwd) {

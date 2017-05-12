@@ -83,7 +83,7 @@ public class QuickAddActivity extends BaseActivity implements DatePickerDialog.O
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setHint("输入进展...");
         editText.setLines(5);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setHintTextColor(getResources().getColor(R.color.gray));
         editText.setBackgroundDrawable(new BitmapDrawable());
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -212,7 +212,7 @@ public class QuickAddActivity extends BaseActivity implements DatePickerDialog.O
         View view = mInflater.inflate(R.layout.view_remind_dlg, null);
         final EditText editText = (EditText) view.findViewById(R.id.editText);
         XUtil.autoKeyBoardShow(editText);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setLines(2);
         editText.setHint("提醒内容...");
         editText.setBackgroundDrawable(new BitmapDrawable());

@@ -15,8 +15,6 @@
     <color name="colorBgremind">@color/colorKeep4</color>
     <color name="colorBglike">@color/colorKeep2</color>
     <color name="colorSearch">@color/colorKeep6</color>
-
-
     <color name="colorBgcheck_">@color/colorKeep3_</color>
     <color name="colorBgremind_">@color/colorKeep4_</color>
 

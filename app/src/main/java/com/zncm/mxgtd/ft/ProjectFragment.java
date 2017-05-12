@@ -101,7 +101,7 @@ public class ProjectFragment extends BaseListFragment {
 
     public void operate(final ProjectData data) {
         final boolean isChecked = EnumData.StatusEnum.OFF.getValue() == data.getStatus();
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "重启" : "完成", "复制", "删除", "克隆", "收藏"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -246,15 +246,14 @@ public class ProjectFragment extends BaseListFragment {
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setHint("输入结果...");
         editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
 
 
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .title("删除确认(" + x + "+" + y + " =?)")
-                .theme(Theme.LIGHT)
                 .positiveText("确定")
                 .negativeText("取消")
                 .callback(new MaterialDialog.ButtonCallback() {

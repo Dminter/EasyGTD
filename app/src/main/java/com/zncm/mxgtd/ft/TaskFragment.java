@@ -381,7 +381,7 @@ public class TaskFragment extends BaseListFragment {
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setHint("序号");
         editText.setSingleLine();
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setText(data.getLevel() + "");
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);

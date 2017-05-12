@@ -21,6 +21,7 @@ import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.LikeData;
 import com.zncm.mxgtd.data.ProjectData;
 import com.zncm.mxgtd.data.TaskData;
+import com.zncm.mxgtd.ui.ItemDetailsActivity;
 import com.zncm.mxgtd.ui.ProjectDetailsActivity;
 import com.zncm.mxgtd.ui.TextActivity;
 import com.zncm.mxgtd.ui.TkDetailsActivity;
@@ -77,12 +78,25 @@ public class LikeFragment extends BaseListFragment {
 
                             DetailsData tmp = new DetailsData();
                             tmp.setTime(data.getTime());
+                            tmp.setBusiness_type(EnumData.DetailBEnum.like.getValue());
+                            tmp.setContent(data.getContent());
+                            tmp.setId(data.getId());
 
                             if (data != null && XUtil.notEmptyOrNull(data.getContent())) {
-                                Intent intent = new Intent(ctx, TextActivity.class);
-                                intent.putExtra(Constant.KEY_PARAM_DATA, tmp);
-                                intent.putExtra("text", data.getContent());
+//                                Intent intent = new Intent(ctx, TextActivity.class);
+//                                intent.putExtra(Constant.KEY_PARAM_DATA, tmp);
+//                                intent.putExtra("text", data.getContent());
+//                                startActivity(intent);
+
+
+                                Intent intent = new Intent(ctx, ItemDetailsActivity.class);
+                                intent.putExtra("DetailsData", tmp);
+                                intent.putExtra("size", 1);
+                                intent.putExtra(Constant.KEY_CURRENT_POSITION, 0);
                                 startActivity(intent);
+
+
+
                             }
 
 
@@ -100,7 +114,7 @@ public class LikeFragment extends BaseListFragment {
     }
 
     public void operate(final int position, final LikeData likeData) {
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{"移除收藏", "复制", "笔记本"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override

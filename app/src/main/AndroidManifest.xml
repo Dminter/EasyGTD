@@ -8,7 +8,7 @@
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="19"
-        tools:overrideLibrary="com.gongwen.marqueen" />
+ />
     <application
 
         android:name="com.zncm.mxgtd.ui.MyApplication"
@@ -61,9 +61,25 @@
             android:launchMode="singleTask" />
 
 
+
+
         <activity
-            android:name="com.zncm.mxgtd.ui.QuickAddActivity"
-            android:theme="@style/AppTheme.Translucent" />
+                android:name="com.zncm.mxgtd.ui.QuickAddActivity"
+                android:excludeFromRecents="true"
+                android:label="快捷笔记"
+                android:launchMode="singleInstance"
+                android:theme="@style/AppTheme.Translucent">
+
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+            </intent-filter>
+        </activity>
+
+
+
+
+
         <activity
             android:name="com.zncm.mxgtd.ui.ShareActivity"
             android:theme="@style/AppTheme.Translucent">

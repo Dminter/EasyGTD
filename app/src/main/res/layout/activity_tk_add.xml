@@ -2,7 +2,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:background="@color/white"
+              android:background="@color/material_light_white"
               android:orientation="vertical">
 
     <ScrollView

@@ -17,6 +17,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.astuetz.PagerSlidingTabStrip;
 import com.github.johnpersano.supertoasts.SuperToast;
-import com.github.johnpersano.supertoasts.util.Style;
 import com.malinskiy.materialicons.IconDrawable;
 import com.malinskiy.materialicons.Iconify;
 import com.zncm.mxgtd.R;
@@ -64,7 +64,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.regex.Pattern;
 
 /**
  * Created by MX on 2014/8/21.
@@ -482,8 +481,16 @@ public class XUtil {
 
 
     public static void initBarTheme(Activity ctx, Toolbar toolbar) {
-        toolbar.setBackgroundColor(MySp.getTheme());
-        StatusBarCompat.setStatusBarColor(ctx, MySp.getTheme());
+
+            toolbar.setBackgroundColor(MySp.getTheme());
+            StatusBarCompat.setStatusBarColor(ctx, MySp.getTheme());
+
+
+    }
+
+    public static MaterialDialog.Builder themeMaterialDialog(Context context) {
+        return new MaterialDialog.Builder(context).theme(MySp.getIsNight()?Theme.DARK:Theme.LIGHT);
+
     }
 
 
@@ -744,8 +751,12 @@ public class XUtil {
         Context ctx = MyApplication.getInstance().ctx;
         indicator.setTextSize(dip2px(16));
         indicator.setTextColor(ctx.getResources().getColor(R.color.white));
-        indicator.setIndicatorColor(MySp.getTheme());
-        indicator.setBackgroundColor(MySp.getTheme());
+
+
+            indicator.setIndicatorColor(MySp.getTheme());
+            indicator.setBackgroundColor(MySp.getTheme());
+
+
 //        Context ctx = MyApplication.getInstance().ctx;
 //        indicator.setIndicatorColor(ctx.getResources().getColor(R.color.material_light_white));
 //        indicator.setBackgroundColor(MySp.getTheme());

@@ -29,6 +29,7 @@ import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.RemindData;
 import com.zncm.mxgtd.data.TaskData;
+import com.zncm.mxgtd.ui.ItemDetailsActivity;
 import com.zncm.mxgtd.ui.MyApplication;
 import com.zncm.mxgtd.ui.TextActivity;
 import com.zncm.mxgtd.utils.DbUtils;
@@ -96,13 +97,25 @@ public class RemindReceiver extends BroadcastReceiver {
 //        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 //        final Ringtone ringtone = RingtoneManager.getRingtone(context, notification);
 
-        final Intent intent2 = new Intent(context, TextActivity.class);
-        intent2.putExtra("text", remindData.getContent());
+//        final Intent intent2 = new Intent(context, TextActivity.class);
+//        intent2.putExtra("text", remindData.getContent());
+//        DetailsData tmp = new DetailsData();
+//        tmp.setTime(remindData.getTime());
+//        intent2.putExtra(Constant.KEY_PARAM_DATA, tmp);
+//        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
         DetailsData tmp = new DetailsData();
         tmp.setTime(remindData.getTime());
-        intent2.putExtra(Constant.KEY_PARAM_DATA, tmp);
-        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        NotiHelper.noti(remindData.getContent(), "", "", intent2, false, !MySp.getIsBigRing(), new Random().nextInt());
+        tmp.setBusiness_type(EnumData.DetailBEnum.remind.getValue());
+        tmp.setContent(XUtil.getTimeYMDHM(remindData.getTime()));
+        tmp.setId(remindData.getId());
+        final     Intent intent = new Intent(context, ItemDetailsActivity.class);
+        intent.putExtra("DetailsData", tmp);
+        intent.putExtra("size", 1);
+        intent.putExtra(Constant.KEY_CURRENT_POSITION, 0);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        NotiHelper.noti(remindData.getContent(), "", "", intent, false, !MySp.getIsBigRing(), new Random().nextInt());
 
         if (MySp.getIsBigRing()) {
             PlayRingTone.playRing();
@@ -130,7 +143,7 @@ public class RemindReceiver extends BroadcastReceiver {
 //                            context.startActivity(select);
 //                        }
 
-                        context.startActivity(intent2);
+                        context.startActivity(intent);
 
                     }
 

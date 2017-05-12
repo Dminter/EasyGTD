@@ -17,4 +17,16 @@
     <color name="card_bg_color3">#78909C</color>
 
 
+    <color name="colorKeeptextg">@color/material_grey_200</color>
+
+    <color name="colorBgprogress">@color/material_grey_700</color>
+    <color name="colorBgcheck">@color/material_grey_700</color>
+    <color name="colorBgremind">@color/material_grey_700</color>
+    <color name="colorBglike">@color/material_grey_700</color>
+    <color name="colorSearch">@color/material_grey_700</color>
+    <color name="colorBgcheck_">@color/material_grey_700</color>
+    <color name="colorBgremind_">@color/material_grey_700</color>
+
+
+
 </resources>

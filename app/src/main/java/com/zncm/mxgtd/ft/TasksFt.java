@@ -27,6 +27,7 @@ import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.WrapContentHeightViewPager;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -55,6 +56,18 @@ public class TasksFt extends BaseFragment {
 
     private void initView() {
         datas = DbUtils.getTaskDataByDefaultPj();
+        if (!XUtil.listNotNull(datas)){
+            /**
+             *导入数据后默认项目无法对应问题
+             * 获取最后正常任务为默认任务，对应的项目为默认项目
+             */
+            TaskData taskData = DbUtils.getTkById(DbUtils.getMaxTk());
+            if (taskData!=null){
+                MySp.setDefaultTk(taskData.getId());
+                MySp.setDefaultPj(taskData.getPj_id());
+                datas = DbUtils.getTaskDataByDefaultPj();
+            }
+        }
         count = datas.size();
         mViewPager = (WrapContentHeightViewPager) view.findViewById(R.id.pager);
         adapter = new MyPagerAdapter(getChildFragmentManager());
@@ -65,13 +78,11 @@ public class TasksFt extends BaseFragment {
         indicator.setViewPager(mViewPager);
         XUtil.viewPagerRandomAnimation(mViewPager);
         XUtil.initIndicatorTheme(indicator);
-
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setBackgroundColor(MySp.getTheme());
+
         }
-
-
 //        Intent newIntent = new Intent(getActivity(), TkDetailsActivity.class);
 //        newIntent.putExtra("query", query);
 //        startActivity(newIntent);
@@ -131,35 +142,29 @@ public class TasksFt extends BaseFragment {
 //    }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(RefreshEvent event) {
-        int type = event.type;
-        if (type == EnumData.RefreshEnum.PjInfo.getValue()) {
-//            Intent intent = new Intent(ctx, ProjectMainFt.class);
-//            startActivity(intent);
-//            finish();
-        }
-
-//        if (type == EnumData.RefreshEnum.TASK.getValue()) {
-//            TaskFragment tmp = (TaskFragment) fragments.get(mViewPager.getCurrentItem());
-//            tmp.onRefresh();
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMessageEvent(RefreshEvent event) {
+//        int type = event.type;
+//        if (type == EnumData.RefreshEnum.MAIN_ITEM.getValue()) {
+//            XUtil.debug("MAIN_ITEM=====MAIN_ITEMMAIN_ITEM");
+//            fragments.get(mViewPager.getCurrentItem()).onRefresh();
 //        }
-    }
-
-//    public boolean dispatchKeyEvent(KeyEvent event) {
-//        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
-//                && event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-//            backToDesk(this);
-//            return true;
-//        }
-//        return super.dispatchKeyEvent(event);
 //    }
-
-    public static void backToDesk(Activity activity) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        activity.startActivity(intent);
-    }
+//
+//
+//
+//
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        EventBus.getDefault().unregister(this);
+//    }
 }
 

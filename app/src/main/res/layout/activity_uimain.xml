@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/myCoordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/myCoordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/myScrollingContent"
@@ -52,12 +53,13 @@
     </android.support.v4.widget.NestedScrollView>
 
     <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        app:bb_behavior="underNavbar|shy"
-        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:background="@color/material_light_white"
+            app:bb_behavior="underNavbar|shy"
+            app:bb_tabXmlResource="@xml/bottombar_tabs"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

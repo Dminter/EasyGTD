@@ -34,7 +34,9 @@ import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
+import com.zncm.mxgtd.data.ProjectData;
 import com.zncm.mxgtd.data.SpConstant;
+import com.zncm.mxgtd.data.TaskData;
 import com.zncm.mxgtd.ft.DetailsFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.utils.DbUtils;
@@ -158,6 +160,55 @@ public class SettingNew extends MaterialSettings {
                 MySp.setIsBigRing(isChecked);
             }
         }).setDefaultValue(MySp.getIsBigRing()));
+
+
+
+
+
+
+
+
+        String taskTitle ="";
+        final TaskData taskData = DbUtils.getTkById(MySp.getDefaultTk());
+        if (taskData!=null&&XUtil.notEmptyOrNull(taskData.getTitle())){
+            taskTitle =taskData.getTitle();
+        }
+        addItem(new DividerItem(ctx));
+        addItem(new TextItem(this, "").setTitle("默认笔记本").setSubtitle(taskTitle).setOnclick(new TextItem.OnClickListener() {
+            @Override
+            public void onClick(TextItem textItem) {
+
+                Intent newIntent = new Intent(ctx, TkDetailsActivity.class);
+                newIntent.putExtra(Constant.KEY_PARAM_DATA, taskData);
+                startActivity(newIntent);
+            }
+        }));
+
+
+        String pjTitle ="";
+        final ProjectData projectData = DbUtils.getPjById(MySp.getDefaultPj());
+        if (projectData!=null&&XUtil.notEmptyOrNull(projectData.getTitle())){
+            pjTitle =projectData.getTitle();
+        }
+        addItem(new DividerItem(ctx));
+        addItem(new TextItem(this, "").setTitle("默认笔记本组").setSubtitle(pjTitle).setOnclick(new TextItem.OnClickListener() {
+            @Override
+            public void onClick(TextItem textItem) {
+                Intent    newIntent = new Intent(ctx, ProjectDetailsActivity.class);
+                newIntent.putExtra(Constant.KEY_PARAM_DATA, projectData);
+                startActivity(newIntent);
+            }
+        }));
+
+
+
+
+
+
+
+
+
+
         addItem(new DividerItem(ctx));
         addItem(new TextItem(ctx, "").setTitle("数据备份").setOnclick(new TextItem.OnClickListener() {
             @Override
@@ -479,7 +530,7 @@ public class SettingNew extends MaterialSettings {
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         editText.setHint("输入结果...");
         editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
         new MaterialDialog.Builder(ctx)

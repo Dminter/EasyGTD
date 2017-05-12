@@ -707,7 +707,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
 
         final EditText editText = (EditText) view.findViewById(R.id.editText);
         XUtil.autoKeyBoardShow(editText);
-        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setLines(2);
 
         editText.setHint("提醒内容...");
