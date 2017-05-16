@@ -53,10 +53,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
         setSwipeBackOn(false);
         MyApplication.updateNightMode(MySp.getIsNight());
         initTitle();
@@ -274,7 +270,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
             Intent intent = new Intent(ctx, MainActivity.class);
             startActivity(intent);
         }
-
 
     }
 

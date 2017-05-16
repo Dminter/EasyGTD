@@ -490,7 +490,6 @@ public class XUtil {
 
     public static MaterialDialog.Builder themeMaterialDialog(Context context) {
         return new MaterialDialog.Builder(context).theme(MySp.getIsNight()?Theme.DARK:Theme.LIGHT);
-
     }
 
 
