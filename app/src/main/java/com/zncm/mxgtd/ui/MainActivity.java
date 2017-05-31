@@ -57,8 +57,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         MyApplication.updateNightMode(MySp.getIsNight());
         initTitle();
         fragments.put(R.id.tab_done, new TasksFt());
-        fragments.put(R.id.tab_book, new ProjectMainFt());
         fragments.put(R.id.tab_remind, new RdFt());
+        fragments.put(R.id.tab_book, new ProjectMainFt());
         fragmentManager = getSupportFragmentManager();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         if (MySp.getIsNight()){
@@ -138,6 +138,32 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     protected void onResume() {
         super.onResume();
         PlayRingTone.stopRing();
+
+
+        if (MySp.getIsAutoNight()) {
+            int hour = XUtil.getHour();
+            boolean flag = false;
+            boolean isNightMode = MySp.getIsNight();
+
+            if (hour >= 6 && hour < 18 ) {
+                if (isNightMode){
+                    flag = true;
+                }
+                MySp.setIsNight( false);
+            } else {
+                if (!isNightMode){
+                    flag = true;
+                }
+                MySp.setIsNight( true);
+            }
+
+            if (flag){
+                initActicity();
+            }
+
+        }
+
+
     }
 
     private void initTitle() {
@@ -211,6 +237,11 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
     }
+    private void initActicity() {
+        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override
@@ -224,8 +255,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 break;
             case 2:
                 MySp.setIsNight(!MySp.getIsNight());
-                finish();
-                startActivity(new Intent(ctx, MainActivity.class));
+                initActicity();
                 break;
             case 3:
                 if (AlipayZeroSdk.hasInstalledAlipayClient(ctx)) {

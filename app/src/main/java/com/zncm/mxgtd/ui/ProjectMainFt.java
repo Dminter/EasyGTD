@@ -1,25 +1,21 @@
 package com.zncm.mxgtd.ui;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.ProjectData;
 import com.zncm.mxgtd.ft.BaseBusFragment;
-import com.zncm.mxgtd.ft.BaseFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.ft.TaskFragment;
 import com.zncm.mxgtd.utils.ColorGenerator;
@@ -28,7 +24,6 @@ import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.WrapContentHeightViewPager;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -60,10 +55,9 @@ public class ProjectMainFt extends BaseBusFragment {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(0);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+        TabLayout mTabLayout = (TabLayout)view.findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(getActivity(),mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
 
         Toolbar  toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         if (toolbar != null) {

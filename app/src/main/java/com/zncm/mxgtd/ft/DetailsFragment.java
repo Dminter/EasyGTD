@@ -424,10 +424,9 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                                 add2Dlg(data, pos);
                                 break;
                             case 3:
-                                new MaterialDialog.Builder(ctx)
+                               XUtil.themeMaterialDialog(ctx)
                                         .title("删除确认?")
                                         .content(data.getContent())
-                                        .theme(Theme.LIGHT)
                                         .positiveText("确定")
                                         .negativeText("取消")
                                         .callback(new MaterialDialog.ButtonCallback() {

@@ -5,33 +5,24 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.adapter.ProjectAdapter;
 import com.zncm.mxgtd.data.Constant;
-import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
-import com.zncm.mxgtd.data.ProgressData;
 import com.zncm.mxgtd.data.ProjectData;
-import com.zncm.mxgtd.data.SpConstant;
 import com.zncm.mxgtd.data.TaskData;
 import com.zncm.mxgtd.ui.TkAddActivity;
 import com.zncm.mxgtd.ui.TkDetailsActivity;
 import com.zncm.mxgtd.utils.DbUtils;
-import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.loadmore.MxItemClickListener;
 
@@ -261,7 +252,7 @@ public class TaskFragment extends BaseListFragment {
 
     public void operate(final TaskData data, final int pos) {
         final boolean isChecked = EnumData.StatusEnum.OFF.getValue() == data.getStatus();
-        new MaterialDialog.Builder(ctx)
+         XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "未完成" : "已完成", "序号", "删除", "编辑"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -283,9 +274,8 @@ public class TaskFragment extends BaseListFragment {
                                 break;
 
                             case 2:
-                                new MaterialDialog.Builder(ctx)
+                                 XUtil.themeMaterialDialog(ctx)
                                         .title("删除笔记本!")
-                                        .theme(Theme.LIGHT)
                                         .positiveText("删除")
                                         .negativeText("取消")
                                         .callback(new MaterialDialog.ButtonCallback() {
@@ -299,60 +289,9 @@ public class TaskFragment extends BaseListFragment {
                                         .show();
                                 break;
                             case 3:
-                                int pj_id = data.getPj_id();
-                                Intent newIntent = null;
-                                newIntent = new Intent(ctx, TkAddActivity.class);
-//                                    newIntent.putExtra(Constant.KEY_PARAM_DATA, pj);
+                                Intent newIntent = new Intent(ctx, TkAddActivity.class);
                                 newIntent.putExtra(Constant.KEY_PARAM_DATA, data);
                                 startActivity(newIntent);
-//                                new MaterialDialog.Builder(ctx)
-//                                        .title("克隆笔记本!")
-//                                        .content("克隆笔记本将会连带克隆笔记本下所有的清单,确认进行克隆?")
-//                                        .theme(Theme.LIGHT)
-//                                        .positiveText("克隆")
-//                                        .negativeText("取消")
-//                                        .callback(new MaterialDialog.ButtonCallback() {
-//                                            @Override
-//                                            public void onPositive(MaterialDialog materialDialog) {
-//                                                try {
-//                                                    int tk_id = data.getId();
-//                                                    QueryBuilder<CheckListData, Integer> builder2 = clDao.queryBuilder();
-//                                                    builder2.where().notIn("status", EnumData.StatusEnum.DEL.getValue()).and().eq("tk_id", tk_id);
-//                                                    List<CheckListData> list = clDao.query(builder2.prepare());
-//                                                    //克隆 确认
-//                                                    data.setModify_time(System.currentTimeMillis());
-//                                                    data.setTime(System.currentTimeMillis());
-//                                                    taskDao.create(data);
-//                                                    if (XUtil.listNotNull(list)) {
-//                                                        for (CheckListData cl : list) {
-//                                                            cl.setTk_id(data.getId());
-//                                                            cl.setModify_time(System.currentTimeMillis());
-//                                                            cl.setTime(System.currentTimeMillis());
-//                                                            cl.setStatus(EnumData.StatusEnum.ON.getValue());
-//                                                            clDao.create(cl);
-//                                                        }
-//                                                    }
-//                                                    EventBus.getDefault().post(new RefreshEvent(EnumData.RefreshEnum.TASK.getValue()));
-//                                                } catch (Exception e) {
-//                                                }
-//                                            }
-//                                        })
-//                                        .show();
-
-
-                                break;
-                            case 4:
-//                                DbUtils.like(data.getTitle(), EnumData.BusinessEnum.TASK.getValue(), data.getId(), data.getId());
-                                break;
-                            case 5:
-//                                int pj_id = data.getPj_id();
-//                                ProjectData pj = projectDao.queryForId(pj_id);
-//                                if (pj != null) {
-//                                    Intent newIntent = null;
-//                                    newIntent = new Intent(ctx, ProjectDetailsActivity.class);
-//                                    newIntent.putExtra(Constant.KEY_PARAM_DATA, pj);
-//                                    startActivity(newIntent);
-//                                }
                                 break;
                             default:
                                 break;
@@ -385,7 +324,7 @@ public class TaskFragment extends BaseListFragment {
         editText.setText(data.getLevel() + "");
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("修改")
                 .neutralText("取消")
@@ -450,7 +389,7 @@ public class TaskFragment extends BaseListFragment {
     }
 
     void initLevel(final TaskData data) {
-        new MaterialDialog.Builder(ctx)
+         XUtil.themeMaterialDialog(ctx)
                 .title("重要性")
                 .items(new String[]{EnumData.TaskLevelEnum.NO.getStrName(), EnumData.TaskLevelEnum.LOW.getStrName(), EnumData.TaskLevelEnum.MIDDLE.getStrName(), EnumData.TaskLevelEnum.HIGH.getStrName()})
                 .itemsCallback(new MaterialDialog.ListCallback() {

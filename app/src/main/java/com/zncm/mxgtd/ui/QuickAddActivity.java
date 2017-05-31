@@ -107,7 +107,7 @@ public class QuickAddActivity extends BaseActivity implements DatePickerDialog.O
 
         });
         view.addView(editText);
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("保存继续")
                 .negativeText("添加")
@@ -163,7 +163,7 @@ public class QuickAddActivity extends BaseActivity implements DatePickerDialog.O
     private void newRd() {
         final String items[] = new String[]{"10秒", "30秒", "1分钟", "2分钟", "3分钟", "5分钟", "10分钟", "15分钟", "20分钟", "25分钟", "30分钟",
                 "40分钟", "45分钟", "50分钟", "1小时", "2小时", "3小时", "4小时", "1天", "2天", "3天", "4天", "5天", "6天", "7天", "15天", "30天", "45天", "60天", "90天", "一年"};
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .title("倒计时")
                 .items(items)
                 .neutralText("取消")
@@ -250,7 +250,7 @@ public class QuickAddActivity extends BaseActivity implements DatePickerDialog.O
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("添加")
                 .negativeText("提醒时间")

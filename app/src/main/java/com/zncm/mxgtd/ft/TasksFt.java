@@ -1,35 +1,24 @@
 package com.zncm.mxgtd.ft;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
-import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.TaskData;
-import com.zncm.mxgtd.ft.BaseFragment;
-import com.zncm.mxgtd.ft.DetailsFragment;
-import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.utils.ColorGenerator;
 import com.zncm.mxgtd.utils.DbUtils;
 import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.WrapContentHeightViewPager;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -74,10 +63,14 @@ public class TasksFt extends BaseFragment {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(0);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+
+        /**
+         *使用support TabLayout 代替 PagerSlidingTabStrip
+         */
+        TabLayout mTabLayout = (TabLayout)view.findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(getActivity(),mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
+
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setBackgroundColor(MySp.getTheme());

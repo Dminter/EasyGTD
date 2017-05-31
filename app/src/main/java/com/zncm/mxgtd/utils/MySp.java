@@ -32,7 +32,8 @@ public class MySp extends MySharedPreferences {
         is_short_cut,
         is_big_ring,
         span_count,
-        is_night
+        is_night,
+        is_auto_night
     }
 
 
@@ -216,6 +217,13 @@ public class MySp extends MySharedPreferences {
 
     public static Boolean getIsNight() {
         return getBoolean(getSharedPreferences(), Key.is_night.toString(), false);
+    }
+ public static void setIsAutoNight(Boolean is_auto_night) {
+        putBoolean(getSharedPreferences(), Key.is_auto_night.toString(), is_auto_night);
+    }
+
+    public static Boolean getIsAutoNight() {
+        return getBoolean(getSharedPreferences(), Key.is_auto_night.toString(), false);
     }
 
     public static void setIsBigRing(Boolean is_big_ring) {

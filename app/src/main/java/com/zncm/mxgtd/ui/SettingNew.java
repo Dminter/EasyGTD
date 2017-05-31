@@ -124,10 +124,9 @@ public class SettingNew extends MaterialSettings {
                     }
                     items.add(i + "");
                 }
-                new MaterialDialog.Builder(ctx)
+                XUtil.themeMaterialDialog(ctx)
                         .title("网格大小-列数")
                         .items(items)
-                        .theme(Theme.LIGHT)
                         .itemsCallbackSingleChoice(pos, new MaterialDialog.ListCallbackSingleChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
@@ -161,6 +160,18 @@ public class SettingNew extends MaterialSettings {
             }
         }).setDefaultValue(MySp.getIsBigRing()));
 
+
+
+
+
+        addItem(new DividerItem(ctx));
+        addItem(new CheckboxItem(this, "").setTitle("自动开启夜间模式").setSubtitle("开始时间18:00，结束时间6:00").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChange(CheckboxItem checkboxItem, boolean b) {
+                MySp.setIsAutoNight(b);
+            }
+        }).setDefaultValue(MySp.getIsAutoNight()));
 
 
 
@@ -250,7 +261,7 @@ public class SettingNew extends MaterialSettings {
 
 
     private void thank() {
-        new MaterialDialog.Builder(this)
+        XUtil.themeMaterialDialog(ctx)
                 .title("特别感谢")
                 .content("AlipayZeroSdk\nmaterial-dialogs\nmaterialtabstrip\normlite\nmaterialsearchview\n")
                 .positiveText("知")
@@ -378,17 +389,16 @@ public class SettingNew extends MaterialSettings {
         }
 
 
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
 //                .customView(view)
                 .title("数据恢复")
                 .items(item)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog materialDialog, View view, final int pos, CharSequence charSequence) {
-                        new MaterialDialog.Builder(ctx)
+                        XUtil.themeMaterialDialog(ctx)
                                 .title("注意!!!")
                                 .content("恢复到之前版本,当前版本数据将会丢失,请先备份!")
-                                .theme(Theme.LIGHT)
                                 .positiveText("仍然恢复")
                                 .negativeText("取消")
                                 .callback(new MaterialDialog.ButtonCallback() {
@@ -473,10 +483,9 @@ public class SettingNew extends MaterialSettings {
         }
         if (canImport) {
             if (fileName.endsWith(".db")) {
-                new MaterialDialog.Builder(ctx)
+                XUtil.themeMaterialDialog(ctx)
                         .title("注意!!!")
                         .content("恢复到之前版本,当前版本数据将会丢失,请先备份!")
-                        .theme(Theme.LIGHT)
                         .positiveText("仍然恢复")
                         .negativeText("取消")
                         .callback(new MaterialDialog.ButtonCallback() {
@@ -533,10 +542,9 @@ public class SettingNew extends MaterialSettings {
         editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .title("恢复确认(" + x + "+" + y + " =?)")
-                .theme(Theme.LIGHT)
                 .positiveText("确定")
                 .negativeText("取消")
                 .callback(new MaterialDialog.ButtonCallback() {

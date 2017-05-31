@@ -2,21 +2,18 @@ package com.zncm.mxgtd.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.zncm.mxgtd.R;
-import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.ft.DetailsFragment;
 import com.zncm.mxgtd.ft.LikeFragment;
-import com.zncm.mxgtd.ft.RemindFragment;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.WrapContentHeightViewPager;
 
@@ -47,10 +44,9 @@ public class TodayLikeActivity extends Fragment {
         mViewPager = (WrapContentHeightViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
         mViewPager.setOffscreenPageLimit(TITLES.length);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+        TabLayout mTabLayout = (TabLayout) view.findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(getActivity(), mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
 

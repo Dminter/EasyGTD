@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -17,7 +18,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -37,7 +38,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.astuetz.PagerSlidingTabStrip;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.malinskiy.materialicons.IconDrawable;
 import com.malinskiy.materialicons.Iconify;
@@ -69,6 +69,23 @@ import java.util.TimerTask;
  * Created by MX on 2014/8/21.
  */
 public class XUtil {
+
+    /**
+     *获取24小时制 小时
+     */
+    public static int getHour() {
+        return Integer.parseInt(new SimpleDateFormat("HH").format(new Date()));
+    }
+
+    /**
+     * tab 样式统一初始化
+     */
+    public static void initTabLayout(Context ctx, TabLayout mTabLayout) {
+        mTabLayout.setBackgroundColor(MySp.getTheme());
+        mTabLayout.setSelectedTabIndicatorColor(ctx.getResources().getColor(R.color.white));
+        mTabLayout.setTabTextColors(ColorStateList.valueOf(ctx.getResources().getColor(R.color.white)));
+    }
+
 
     public static SpannableString getSerachString(String str, String searchWord) {
         if (!notEmptyOrNull(str)) {
@@ -489,7 +506,11 @@ public class XUtil {
     }
 
     public static MaterialDialog.Builder themeMaterialDialog(Context context) {
-        return new MaterialDialog.Builder(context).theme(MySp.getIsNight()?Theme.DARK:Theme.LIGHT);
+        return new MaterialDialog.Builder(context)
+                .theme(MySp.getIsNight()?Theme.DARK:Theme.LIGHT)
+                .neutralColorRes(R.color.material_light_black)
+                .positiveColorRes(R.color.material_light_black)
+                .negativeColorRes(R.color.material_light_black);
     }
 
 
@@ -712,10 +733,9 @@ public class XUtil {
     }
 
     public static void aboutUsDlg(Context ctx) {
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .title("关于我们")
                 .content("1.使用中遇到任何问题和意见反馈可加入产品交流群" + Constant.AUTHOR_QQ_GROUP + "\n2.注意:请勿使用系统->应用程序->清除数据,那样将会丢失本软件的一切数据,后果自担")
-                .theme(Theme.LIGHT)  // the default is light, so you don't need this line
                 .positiveText("知道了")
                 .show();
 
@@ -745,25 +765,6 @@ public class XUtil {
         return calendar.getTimeInMillis();
     }
 
-
-    public static void initIndicatorTheme(PagerSlidingTabStrip indicator) {
-        Context ctx = MyApplication.getInstance().ctx;
-        indicator.setTextSize(dip2px(16));
-        indicator.setTextColor(ctx.getResources().getColor(R.color.white));
-
-
-            indicator.setIndicatorColor(MySp.getTheme());
-            indicator.setBackgroundColor(MySp.getTheme());
-
-
-//        Context ctx = MyApplication.getInstance().ctx;
-//        indicator.setIndicatorColor(ctx.getResources().getColor(R.color.material_light_white));
-//        indicator.setBackgroundColor(MySp.getTheme());
-//        indicator.setDividerColor(MySp.getTheme());
-//        indicator.setTextColor(ctx.getResources().getColor(R.color.material_light_white));
-//        indicator.setUnderlineHeight(XUtil.dip2px(2));
-//        indicator.setIndicatorHeight(XUtil.dip2px(2));
-    }
 
     public static void openUrl(String url) {
         try {

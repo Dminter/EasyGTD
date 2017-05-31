@@ -5,6 +5,11 @@
         icon="@drawable/ic_done"
         id="@+id/tab_done"
         title="首页" />
+    <tab
+            barColorWhenSelected="@color/material_grey_100"
+            icon="@drawable/ic_remind"
+            id="@+id/tab_remind"
+            title="提醒" />
 
     <tab
         barColorWhenSelected="@color/material_grey_100"
@@ -12,11 +17,6 @@
         id="@+id/tab_book"
         title="笔记本" />
 
-    <tab
-        barColorWhenSelected="@color/material_grey_100"
-        icon="@drawable/ic_remind"
-        id="@+id/tab_remind"
-        title="提醒" />
 
 
 </tabs>

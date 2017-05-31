@@ -1,18 +1,12 @@
 package com.zncm.mxgtd.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.EnumData;
@@ -20,7 +14,6 @@ import com.zncm.mxgtd.ft.ProjectFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.utils.XUtil;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -51,10 +44,9 @@ public class PjActivity extends BaseActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(TITLES.length);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+        TabLayout mTabLayout = (TabLayout)findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(this,mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
 

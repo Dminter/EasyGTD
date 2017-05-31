@@ -125,7 +125,7 @@ public class RemindReceiver extends BroadcastReceiver {
         if (tk != null && XUtil.notEmptyOrNull(tk.getTitle())) {
             title = tk.getTitle();
         }
-        MaterialDialog dialog = new MaterialDialog.Builder(MyApplication.getInstance().ctx)
+        MaterialDialog dialog =  XUtil.themeMaterialDialog(MyApplication.getInstance().ctx)
                 .title(title)
                 .content(remindData.getContent())
                 .positiveText("查看")
