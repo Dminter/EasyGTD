@@ -177,6 +177,16 @@ public class SettingNew extends MaterialSettings {
 
 
 
+        addItem(new DividerItem(ctx));
+        addItem(new CheckboxItem(this, "").setTitle("指纹锁").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChange(CheckboxItem checkboxItem, boolean b) {
+                MySp.setIsLock(b);
+            }
+        }).setDefaultValue(MySp.getIsLock()));
+
+
 
 
         String taskTitle ="";

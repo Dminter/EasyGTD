@@ -1,66 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/myCoordinator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/myScrollingContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
 
-        <RelativeLayout
+
+    <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/myCoordinator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <FrameLayout
-                android:id="@+id/topView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:minHeight="?attr/actionBarSize">
-
-
-
-
-
-                </android.support.v7.widget.Toolbar>
-
-
-                <com.miguelcatalan.materialsearchview.MaterialSearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/container"
+        <android.support.v4.widget.NestedScrollView
+                android:id="@+id/myScrollingContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/topView" />
-        </RelativeLayout>
+                android:fitsSystemWindows="true">
 
-    </android.support.v4.widget.NestedScrollView>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-    <com.roughike.bottombar.BottomBar
-            android:id="@+id/bottomBar"
+                <FrameLayout
+                        android:id="@+id/topView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                                       android:id="@+id/toolbar"
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content"
+                                                       android:focusable="true"
+                                                       android:focusableInTouchMode="true"
+                                                       android:minHeight="?attr/actionBarSize">
+
+
+                    </android.support.v7.widget.Toolbar>
+
+
+                    <com.miguelcatalan.materialsearchview.MaterialSearchView
+                            android:id="@+id/search_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <FrameLayout
+                        android:id="@+id/container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/topView" />
+            </RelativeLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <com.roughike.bottombar.BottomBar
+                android:id="@+id/bottomBar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:background="@color/material_light_white"
+                app:bb_behavior="underNavbar|shy"
+                app:bb_tabXmlResource="@xml/bottombar_tabs"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
+
+    <RelativeLayout
+            android:clickable="true"
+            android:id="@+id/rlFingerprint"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:background="@color/material_light_white"
-            app:bb_behavior="underNavbar|shy"
-            app:bb_tabXmlResource="@xml/bottombar_tabs"/>
+            android:background="@color/white"
+            android:layout_height="match_parent">
 
-</android.support.design.widget.CoordinatorLayout>
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_centerInParent="true"
+                   android:src="@drawable/fingerprint"
+        />
 
+    </RelativeLayout>
+</FrameLayout>
 

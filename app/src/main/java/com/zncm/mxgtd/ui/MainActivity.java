@@ -8,6 +8,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
@@ -15,12 +16,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.malinskiy.materialicons.Iconify;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
+import com.wei.android.lib.fingerprintidentify.FingerprintIdentify;
+import com.wei.android.lib.fingerprintidentify.base.BaseFingerprint;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.ProjectData;
@@ -32,6 +36,7 @@ import com.zncm.mxgtd.utils.DoubleClickImp;
 import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.PlayRingTone;
 import com.zncm.mxgtd.utils.XUtil;
+import com.zncm.mxgtd.utils.statusbar.StatusBarCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -50,6 +55,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     MaterialSearchView searchView;
     BottomBar bottomBar;
 
+
+    RelativeLayout rlFingerprint;
+    private boolean mIsCalledStartIdentify = false;
+    private FingerprintIdentify mFingerprintIdentify;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +72,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         fragments.put(R.id.tab_book, new ProjectMainFt());
         fragmentManager = getSupportFragmentManager();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        rlFingerprint = (RelativeLayout) findViewById(R.id.rlFingerprint);
         if (MySp.getIsNight()){
             bottomBar.setActiveTabColor(getResources().getColor(R.color.material_light_black));
         }else {
@@ -164,6 +176,62 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         }
 
 
+        lock();
+
+
+
+    }
+
+    private void lock() {
+        if (!MySp.getIsLock()){
+            rlFingerprint.setVisibility(View.GONE);
+            return;
+        }
+
+
+        if (rlFingerprint.getVisibility()==View.VISIBLE){
+            StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.white));
+        }
+
+        if (mIsCalledStartIdentify) {
+            mFingerprintIdentify.resumeIdentify();
+            return;
+        }
+//
+        mIsCalledStartIdentify = true;
+        mFingerprintIdentify = new FingerprintIdentify(this, new BaseFingerprint.FingerprintIdentifyExceptionListener() {
+            @Override
+            public void onCatchException(Throwable exception) {
+
+            }
+        });
+
+
+        if (!mFingerprintIdentify.isFingerprintEnable()) {
+            XUtil.tShort("Sorry →_→");
+//            finish();
+            return;
+        }
+        mFingerprintIdentify.resumeIdentify();
+        mFingerprintIdentify.startIdentify(3, new BaseFingerprint.FingerprintIdentifyListener() {
+            @Override
+            public void onSucceed() {
+                rlFingerprint.setVisibility(View.GONE);
+                StatusBarCompat.setStatusBarColor(MainActivity.this, MySp.getTheme());
+
+            }
+
+            @Override
+            public void onNotMatch(int availableTimes) {
+                XUtil.tShort("Sorry →_→ onNotMatch");
+            }
+
+            @Override
+            public void onFailed() {
+                XUtil.tShort("Sorry →_→ onFailed");
+//                finish();
+            }
+        });
     }
 
     private void initTitle() {
@@ -203,21 +271,22 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     }
 
 
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-            backToDesk(this);
-            return true;
-        }
-        return super.dispatchKeyEvent(event);
-    }
-
-    public static void backToDesk(Activity activity) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        activity.startActivity(intent);
-    }
+//    public boolean dispatchKeyEvent(KeyEvent event) {
+//        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
+//                && event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
+////            backToDesk(this);
+//            finish();
+//            return true;
+//        }
+//        return super.dispatchKeyEvent(event);
+//    }
+//
+//    public static void backToDesk(Activity activity) {
+//        Intent intent = new Intent(Intent.ACTION_MAIN);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.addCategory(Intent.CATEGORY_HOME);
+//        activity.startActivity(intent);
+//    }
 
 
     @Override
@@ -315,6 +384,16 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mFingerprintIdentify!=null){
+        mFingerprintIdentify.cancelIdentify();
+        }
+    }
+
 
 
     @Override
