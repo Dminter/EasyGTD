@@ -1,17 +1,13 @@
 package com.zncm.mxgtd.ui;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -47,16 +43,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ *主界面
+ */
 public class MainActivity extends BaseActivity implements ColorChooserDialog.ColorCallback {
     private Fragment fragment = null;
     private Map<Integer, Fragment> fragments = new HashMap<>();
-    FragmentManager fragmentManager;
-    MaterialSearchView searchView;
-    BottomBar bottomBar;
-
-
-    RelativeLayout rlFingerprint;
+    private FragmentManager fragmentManager;
+    private MaterialSearchView searchView;
+    private BottomBar bottomBar;
+    private RelativeLayout rlFingerprint;
     private boolean mIsCalledStartIdentify = false;
     private FingerprintIdentify mFingerprintIdentify;
 
@@ -73,9 +69,9 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         fragmentManager = getSupportFragmentManager();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         rlFingerprint = (RelativeLayout) findViewById(R.id.rlFingerprint);
-        if (MySp.getIsNight()){
+        if (MySp.getIsNight()) {
             bottomBar.setActiveTabColor(getResources().getColor(R.color.material_light_black));
-        }else {
+        } else {
             bottomBar.setActiveTabColor(MySp.getTheme());
         }
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -157,19 +153,19 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
             boolean flag = false;
             boolean isNightMode = MySp.getIsNight();
 
-            if (hour >= 6 && hour < 18 ) {
-                if (isNightMode){
+            if (hour >= 6 && hour < 18) {
+                if (isNightMode) {
                     flag = true;
                 }
-                MySp.setIsNight( false);
+                MySp.setIsNight(false);
             } else {
-                if (!isNightMode){
+                if (!isNightMode) {
                     flag = true;
                 }
-                MySp.setIsNight( true);
+                MySp.setIsNight(true);
             }
 
-            if (flag){
+            if (flag) {
                 initActicity();
             }
 
@@ -179,17 +175,16 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         lock();
 
 
-
     }
 
     private void lock() {
-        if (!MySp.getIsLock()){
+        if (!MySp.getIsLock()) {
             rlFingerprint.setVisibility(View.GONE);
             return;
         }
 
 
-        if (rlFingerprint.getVisibility()==View.VISIBLE){
+        if (rlFingerprint.getVisibility() == View.VISIBLE) {
             StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.white));
         }
 
@@ -306,6 +301,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
     }
+
     private void initActicity() {
         finish();
         Intent intent = new Intent(this, MainActivity.class);
@@ -389,11 +385,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     @Override
     protected void onPause() {
         super.onPause();
-        if (mFingerprintIdentify!=null){
-        mFingerprintIdentify.cancelIdentify();
+        if (mFingerprintIdentify != null) {
+            mFingerprintIdentify.cancelIdentify();
         }
     }
-
 
 
     @Override
