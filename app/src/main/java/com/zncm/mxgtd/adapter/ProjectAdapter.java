@@ -38,7 +38,6 @@ public abstract class ProjectAdapter extends RecyclerView.Adapter<RecyclerView.V
                     .inflate(R.layout.cell_project, parent, false);
             return new PjViewHolder(view);
         }
-
         return null;
     }
 

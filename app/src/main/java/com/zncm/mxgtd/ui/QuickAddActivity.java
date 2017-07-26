@@ -41,7 +41,7 @@ import java.util.Date;
 
 public class QuickAddActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private TaskData defaultTask;
-    private String action = Constant.ADD_RD;
+    private String action = Constant.ADD_PROGRESS;
     private Calendar calendar = Calendar.getInstance();
     private Calendar remindCalendar = Calendar.getInstance();
     private TextView tvTime;

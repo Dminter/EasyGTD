@@ -5,16 +5,13 @@ public class Constant {
 
     public static String ADD_RD = "ADD_RD";
     public static String ADD_PROGRESS = "ADD_PROGRESS";
-
     public static String update_url = "http://www.coolapk.com/apk/com.zncm.mxgtd";
-
 
     public static final int MAX_LEN = 12;
     public static final int sort_no = 999;
     public static final int FS_1 = 24;
     public static final int FS_2 = 16;
     public static final int FS_3 = 14;
-
 
     public static final String ACTION_BUTTON = "com.notifications.intent.action.ButtonClick";
     public static final String INTENT_BUTTONID_TAG = "ButtonId";

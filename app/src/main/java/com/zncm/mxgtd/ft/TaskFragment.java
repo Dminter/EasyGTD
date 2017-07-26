@@ -105,7 +105,11 @@ public class TaskFragment extends BaseListFragment {
                 }
 
 
-                holder.cardView.setCardBackgroundColor(getResources().getColor(R.color.colorBgremind));
+                if (tk.getStatus() == EnumData.StatusEnum.ON.getValue()) {
+                    holder.cardView.setCardBackgroundColor(getResources().getColor(R.color.colorBgremind));
+                } else if (tk.getStatus() == EnumData.StatusEnum.OFF.getValue()) {
+                    holder.cardView.setCardBackgroundColor(getResources().getColor(R.color.colorBgremind_));
+                }
 
 
                 //2015年8月31日 不显示 笔记本组 进入笔记本可以查看所属笔记本组 简洁列表
@@ -252,7 +256,7 @@ public class TaskFragment extends BaseListFragment {
 
     public void operate(final TaskData data, final int pos) {
         final boolean isChecked = EnumData.StatusEnum.OFF.getValue() == data.getStatus();
-         XUtil.themeMaterialDialog(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "未完成" : "已完成", "序号", "删除", "编辑"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -274,7 +278,7 @@ public class TaskFragment extends BaseListFragment {
                                 break;
 
                             case 2:
-                                 XUtil.themeMaterialDialog(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("删除笔记本!")
                                         .positiveText("删除")
                                         .negativeText("取消")
@@ -324,7 +328,7 @@ public class TaskFragment extends BaseListFragment {
         editText.setText(data.getLevel() + "");
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
-        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("修改")
                 .neutralText("取消")
@@ -389,7 +393,7 @@ public class TaskFragment extends BaseListFragment {
     }
 
     void initLevel(final TaskData data) {
-         XUtil.themeMaterialDialog(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .title("重要性")
                 .items(new String[]{EnumData.TaskLevelEnum.NO.getStrName(), EnumData.TaskLevelEnum.LOW.getStrName(), EnumData.TaskLevelEnum.MIDDLE.getStrName(), EnumData.TaskLevelEnum.HIGH.getStrName()})
                 .itemsCallback(new MaterialDialog.ListCallback() {

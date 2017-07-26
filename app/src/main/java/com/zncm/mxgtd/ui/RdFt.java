@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
 import com.zncm.mxgtd.data.EnumData;
+import com.zncm.mxgtd.ft.LikeFragment;
 import com.zncm.mxgtd.ft.RemindFragment;
 import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
@@ -23,8 +24,12 @@ import com.zncm.mxgtd.view.WrapContentHeightViewPager;
 public class RdFt extends Fragment {
     private RemindFragment remindFragment;
     private RemindFragment remindOutFragment;
+
+    LikeFragment likeFragment ;
+
     private WrapContentHeightViewPager mViewPager;
-    private String TITLES[] = new String[]{"将来", "周期", "过去"};
+    private String TITLES[] = new String[]{"提醒","收藏"};
+//    private String TITLES[] = new String[]{"将来", "周期", "过去"};
 
     View view;
 
@@ -82,19 +87,26 @@ public class RdFt extends Fragment {
                     fragment = remindFragment;
                     break;
                 case 1:
-                    remindOutFragment = new RemindFragment();
-                    bundle = new Bundle();
-                    bundle.putInt(Constant.KEY_PARAM_TYPE, EnumData.StatusEnum.NONE.getValue());
-                    remindOutFragment.setArguments(bundle);
-                    fragment = remindOutFragment;
+                    likeFragment = new LikeFragment();
+                    fragment = likeFragment;
                     break;
-                case 2:
-                    remindOutFragment = new RemindFragment();
-                    bundle = new Bundle();
-                    bundle.putInt(Constant.KEY_PARAM_TYPE, EnumData.StatusEnum.OUTDATE.getValue());
-                    remindOutFragment.setArguments(bundle);
-                    fragment = remindOutFragment;
-                    break;
+
+
+
+//                case 1:
+//                    remindOutFragment = new RemindFragment();
+//                    bundle = new Bundle();
+//                    bundle.putInt(Constant.KEY_PARAM_TYPE, EnumData.StatusEnum.NONE.getValue());
+//                    remindOutFragment.setArguments(bundle);
+//                    fragment = remindOutFragment;
+//                    break;
+//                case 2:
+//                    remindOutFragment = new RemindFragment();
+//                    bundle = new Bundle();
+//                    bundle.putInt(Constant.KEY_PARAM_TYPE, EnumData.StatusEnum.OUTDATE.getValue());
+//                    remindOutFragment.setArguments(bundle);
+//                    fragment = remindOutFragment;
+//                    break;
 
             }
 

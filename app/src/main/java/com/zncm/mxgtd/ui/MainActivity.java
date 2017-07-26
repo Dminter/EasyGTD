@@ -113,34 +113,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         }
     }
 
-    private void initNoData() {
-        DbUtils.savePj("生活");
-        DbUtils.savePj("工作");
-        DbUtils.savePj("学习");
-        DbUtils.savePj("积累");
-        DbUtils.savePj("健身");
-        DbUtils.savePj("旅游");
-        DbUtils.saveTk("便签");
-        DbUtils.saveTk("记录");
-        DbUtils.saveTk("电影");
-        DbUtils.saveTk("书籍");
-        DbUtils.saveTk("购物");
-        DbUtils.saveTk("旅行");
-        DbUtils.saveTk("清单");
-        DbUtils.saveTk("日记");
-        DbUtils.saveTk("跑步");
-        DbUtils.saveTk("日记");
-        DbUtils.saveTk("娱乐");
-        DbUtils.saveRd(1);
-        DbUtils.saveRd(5);
-        DbUtils.saveRd(30);
-        DbUtils.saveRd(60);
-        DbUtils.saveRd(1000);
-        DbUtils.saveRd(2000);
-        XUtil.tShort("数据初始化完毕~");
-        EventBus.getDefault().post(EnumData.RefreshEnum.MAIN.getValue());
-    }
-
 
     @Override
     protected void onResume() {
@@ -203,7 +175,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
 
 
         if (!mFingerprintIdentify.isFingerprintEnable()) {
-            XUtil.tShort("Sorry →_→");
+            XUtil.tShort("验证失败~");
 //            finish();
             return;
         }
@@ -218,12 +190,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
 
             @Override
             public void onNotMatch(int availableTimes) {
-                XUtil.tShort("Sorry →_→ onNotMatch");
+                XUtil.tShort("验证失败~");
             }
 
             @Override
             public void onFailed() {
-                XUtil.tShort("Sorry →_→ onFailed");
+                XUtil.tShort("验证失败~");
 //                finish();
             }
         });
@@ -262,7 +234,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.activity_uimain;
+        return R.layout.activity_uimain2;
     }
 
 
@@ -291,8 +263,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         searchView.setMenuItem(item);
         SubMenu sub = menu.addSubMenu("");
         sub.setIcon(XUtil.initIconWhite(Iconify.IconValue.md_more_vert));
-        sub.add(0, 5, 0, "回顾今天");
-        sub.add(0, 6, 0, "收藏");
+        sub.add(0, 5, 0, "回顾");
+//        sub.add(0, 6, 0, "收藏");
         sub.add(0, 1, 0, "设置");
         sub.add(0, 2, 0, "白天/夜间");
         sub.add(0, 7, 0, "主题色");
@@ -396,4 +368,33 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         MySp.setTheme(selectedColor);
         EventBus.getDefault().post(new RefreshEvent(EnumData.RefreshEnum.MAIN.getValue()));
     }
+
+    private void initNoData() {
+        DbUtils.savePj("生活");
+        DbUtils.savePj("工作");
+        DbUtils.savePj("学习");
+        DbUtils.savePj("积累");
+        DbUtils.savePj("健身");
+        DbUtils.savePj("旅游");
+        DbUtils.saveTk("便签");
+        DbUtils.saveTk("记录");
+        DbUtils.saveTk("电影");
+        DbUtils.saveTk("书籍");
+        DbUtils.saveTk("购物");
+        DbUtils.saveTk("旅行");
+        DbUtils.saveTk("清单");
+        DbUtils.saveTk("日记");
+        DbUtils.saveTk("跑步");
+        DbUtils.saveTk("日记");
+        DbUtils.saveTk("娱乐");
+        DbUtils.saveRd(1);
+        DbUtils.saveRd(5);
+        DbUtils.saveRd(30);
+        DbUtils.saveRd(60);
+        DbUtils.saveRd(1000);
+        DbUtils.saveRd(2000);
+        XUtil.tShort("数据初始化完毕~");
+        EventBus.getDefault().post(EnumData.RefreshEnum.MAIN.getValue());
+    }
+
 }
