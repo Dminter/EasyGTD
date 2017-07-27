@@ -23,7 +23,7 @@ public class PinchZoomTextView extends TextView {
     /**
      * The ratio of the text size compared to its original.
      */
-    private float ratio = 20.0f;
+    private float ratio = 12.0f;
 
     /**
      * The distance between the two pointers when they are first placed on the screen.
@@ -42,7 +42,7 @@ public class PinchZoomTextView extends TextView {
 
 
     private float fontSize;
-    private float fontSizeBase = 20f;
+    private float fontSizeBase = 12f;
 
     /**
      * Default constructor.

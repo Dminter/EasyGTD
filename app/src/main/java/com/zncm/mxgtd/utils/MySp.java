@@ -150,7 +150,7 @@ public class MySp extends MySharedPreferences {
     }
 
     public static Float getFontSize() {
-        return getFloat(getSharedPreferences(), Key.font_size.toString(), 20f);
+        return getFloat(getSharedPreferences(), Key.font_size.toString(), 12f);
     }
 
     public static void setTheme(Integer theme) {

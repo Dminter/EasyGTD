@@ -150,19 +150,60 @@ public class DbUtils {
             if (!XUtil.notEmptyOrNull(content)) {
                 return false;
             }
+
             TaskData tk = taskDao.queryForId(MySp.getDefaultTk());
             if (tk != null) {
-                ProgressData progressData = new ProgressData(content, EnumData.ProgressTypeEnum.SYS.getValue(),
-                        EnumData.ProgressBusinessEnum.REPLY.getValue(), EnumData.ProgressStatusEnum.NORMAL.getValue(),
-                        tk.getPj_id(), tk.getId(), EnumData.ProgressActionEnum.ADD.getValue()
-                );
-                progressDao.create(progressData);
+
+                if (content.startsWith("#")) {
+                    content = content.substring(1, content.length());
+                    CheckListData checkListData = new CheckListData(content, EnumData.StatusEnum.ON.getValue(), EnumData.TaskLevelEnum.NO.getValue(),
+                            tk.getId()
+                    );
+                    insertCheckList(checkListData);
+                    return true;
+                } else if (content.startsWith("@") && content.contains(" ")) {
+                    Long remind_time = System.currentTimeMillis();
+                    Long timeOffset = 0l;
+                    String  timeStr = content.substring(2, content.indexOf(" "));
+                    String  realStr = content.substring(content.indexOf(" ") + 1, content.length());
+                    timeOffset = Long.parseLong(timeStr);
+                    try {
+                        if (content.startsWith("@s")) {
+                            timeOffset = remind_time + timeOffset * Constant.SEC;
+                        } else if (content.startsWith("@m")) {
+                            timeOffset = remind_time + timeOffset * Constant.MIN;
+                        } else if (content.startsWith("@h")) {
+                            timeOffset = remind_time + timeOffset * Constant.HOUR;
+                        } else if (content.startsWith("@d")) {
+                            timeOffset = XUtil.getDayStart() + 10 * Constant.HOUR + timeOffset * Constant.DAY;
+                        }
+                        RemindData remindData = new RemindData(realStr, EnumData.StatusEnum.ON.getValue(), tk.getId(),
+                                timeOffset, EnumData.RemindRepeatTypeEnum.WARN_NO.getValue()
+                        );
+                        insertRemind(remindData);
+                        DbUtils.initRemind(MyApplication.getInstance().ctx);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        addProgress(content, tk);
+                    }
+                } else {
+                    addProgress(content, tk);
+                }
+
                 flag = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    private static void addProgress(String content, TaskData tk) {
+        ProgressData progressData = new ProgressData(content, EnumData.ProgressTypeEnum.SYS.getValue(),
+                EnumData.ProgressBusinessEnum.REPLY.getValue(), EnumData.ProgressStatusEnum.NORMAL.getValue(),
+                tk.getPj_id(), tk.getId(), EnumData.ProgressActionEnum.ADD.getValue()
+        );
+        progressDao.create(progressData);
     }
 
     public static TaskData getDefaultTk() {
@@ -582,8 +623,6 @@ public class DbUtils {
     }
 
 
-   
-
     public static ArrayList<ScanData> getCheckListPage(int tk_id, int pageIndex) {
         init();
         ArrayList<ScanData> datas = new ArrayList<ScanData>();
@@ -948,7 +987,9 @@ public class DbUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }    public static void delByDetailBEnum(int business_type, int id) {
+    }
+
+    public static void delByDetailBEnum(int business_type, int id) {
         init();
         try {
 
@@ -963,18 +1004,17 @@ public class DbUtils {
                 updateBuilder.where().eq("id", id);
                 updateBuilder.updateColumnValue("status", EnumData.StatusEnum.DEL.getValue());
                 updateBuilder.update();
-            }else if (EnumData.DetailBEnum.remind.getValue() == business_type) {
+            } else if (EnumData.DetailBEnum.remind.getValue() == business_type) {
                 UpdateBuilder updateBuilder = rdDao.updateBuilder();
                 updateBuilder.where().eq("id", id);
                 updateBuilder.updateColumnValue("status", EnumData.StatusEnum.DEL.getValue());
                 updateBuilder.update();
-            }else if (EnumData.DetailBEnum.like.getValue() == business_type) {
+            } else if (EnumData.DetailBEnum.like.getValue() == business_type) {
                 UpdateBuilder updateBuilder = likeDao.updateBuilder();
                 updateBuilder.where().eq("id", id);
                 updateBuilder.updateColumnValue("status", EnumData.StatusEnum.DEL.getValue());
                 updateBuilder.update();
             }
-
 
 
         } catch (Exception e) {

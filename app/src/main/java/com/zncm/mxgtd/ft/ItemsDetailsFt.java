@@ -193,6 +193,7 @@ public class ItemsDetailsFt extends Fragment {
 //        textView.setTextSize(XUtil.dip2px(6));
         textView.setTextColor(getResources().getColor(R.color.material_light_black));
         textView.setTextSize(MySp.getFontSize());
+        textView.setLineSpacing(1,1.2f);
         textView.setTextIsSelectable(true);
         if (data != null && XUtil.notEmptyOrNull(data.getContent())) {
             textView.setText(data.getContent());
