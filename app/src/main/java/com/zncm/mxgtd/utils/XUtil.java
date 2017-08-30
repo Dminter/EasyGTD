@@ -71,7 +71,7 @@ import java.util.TimerTask;
 public class XUtil {
 
     /**
-     *获取24小时制 小时
+     * 获取24小时制 小时
      */
     public static int getHour() {
         return Integer.parseInt(new SimpleDateFormat("HH").format(new Date()));
@@ -105,8 +105,7 @@ public class XUtil {
     }
 
     /**
-     * @param activity
-     * @param proText  缩放的倍数
+     * @param proText 缩放的倍数
      */
     public static void scaleTextSize(Activity activity, float proText) {
         float size;
@@ -499,15 +498,15 @@ public class XUtil {
 
     public static void initBarTheme(Activity ctx, Toolbar toolbar) {
 
-            toolbar.setBackgroundColor(MySp.getTheme());
-            StatusBarCompat.setStatusBarColor(ctx, MySp.getTheme());
+        toolbar.setBackgroundColor(MySp.getTheme());
+        StatusBarCompat.setStatusBarColor(ctx, MySp.getTheme());
 
 
     }
 
     public static MaterialDialog.Builder themeMaterialDialog(Context context) {
         return new MaterialDialog.Builder(context)
-                .theme(MySp.getIsNight()?Theme.DARK:Theme.LIGHT)
+                .theme(MySp.getIsNight() ? Theme.DARK : Theme.LIGHT)
                 .neutralColorRes(R.color.material_light_black)
                 .positiveColorRes(R.color.material_light_black)
                 .negativeColorRes(R.color.material_light_black);
@@ -703,7 +702,6 @@ public class XUtil {
         String version = packInfo.versionName;
         return version;
     }
-
 
 
     public static void rateUs(Activity ctx) {
@@ -941,6 +939,10 @@ public class XUtil {
 
     public static String getDateYMDEHM(Long inputDate) {
         return new SimpleDateFormat("yyyy-MM-dd E HH:mm").format(new Date(inputDate));
+    }
+
+    public static String getDateYMDEHMCur() {
+        return new SimpleDateFormat("yyyy-MM-dd_E_HH_mm").format(new Date());
     }
 
     public static String getDateEHM(Long inputDate) {
@@ -1223,6 +1225,31 @@ public class XUtil {
             }
         }
         oldPath.delete();
+    }
+
+    /**
+     *发送邮件，带附件
+     */
+    public static void sendEmail(Context ctx, String emailAddr, String filePath) {
+        if (!notEmptyOrNull(emailAddr)) {
+            return;
+        }
+        if (!notEmptyOrNull(filePath)) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        String[] tos = {emailAddr};
+        String[] ccs = {""};
+        String[] bccs = {""};
+        intent.putExtra(Intent.EXTRA_EMAIL, tos);
+//        intent.putExtra(Intent.EXTRA_CC, ccs);
+//        intent.putExtra(Intent.EXTRA_BCC, bccs);
+        intent.putExtra(Intent.EXTRA_TEXT, ctx.getResources().getString(R.string.app_name) + " 数据备份");
+        intent.putExtra(Intent.EXTRA_SUBJECT, ctx.getResources().getString(R.string.app_name) + " " + getDateYMDEHMCur());
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
+        intent.setType("message/rfc882");
+        Intent.createChooser(intent, "选择发邮件的客户端");
+        ctx.startActivity(intent);
     }
 
 }

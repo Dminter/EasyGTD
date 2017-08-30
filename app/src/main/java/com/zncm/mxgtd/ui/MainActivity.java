@@ -263,12 +263,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         searchView.setMenuItem(item);
         SubMenu sub = menu.addSubMenu("");
         sub.setIcon(XUtil.initIconWhite(Iconify.IconValue.md_more_vert));
-        sub.add(0, 5, 0, "回顾");
 //        sub.add(0, 6, 0, "收藏");
         sub.add(0, 1, 0, "设置");
         sub.add(0, 2, 0, "白天/夜间");
         sub.add(0, 7, 0, "主题色");
         sub.add(0, 4, 0, "首页刷新");
+        sub.add(0, 5, 0, "回顾");
         sub.add(0, 3, 0, "打赏");
         sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
@@ -387,12 +387,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         DbUtils.saveTk("跑步");
         DbUtils.saveTk("日记");
         DbUtils.saveTk("娱乐");
-        DbUtils.saveRd(1);
-        DbUtils.saveRd(5);
-        DbUtils.saveRd(30);
-        DbUtils.saveRd(60);
-        DbUtils.saveRd(1000);
-        DbUtils.saveRd(2000);
         XUtil.tShort("数据初始化完毕~");
         EventBus.getDefault().post(EnumData.RefreshEnum.MAIN.getValue());
     }

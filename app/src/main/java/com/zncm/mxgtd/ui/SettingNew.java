@@ -22,7 +22,6 @@ import android.widget.SimpleAdapter;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.kenumir.materialsettings.MaterialSettings;
 import com.kenumir.materialsettings.items.CheckboxItem;
 import com.kenumir.materialsettings.items.DividerItem;
@@ -32,12 +31,10 @@ import com.kenumir.materialsettings.storage.StorageInterface;
 import com.malinskiy.materialicons.Iconify;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
-import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.ProjectData;
 import com.zncm.mxgtd.data.SpConstant;
 import com.zncm.mxgtd.data.TaskData;
-import com.zncm.mxgtd.ft.DetailsFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.utils.DbUtils;
 import com.zncm.mxgtd.utils.MyPath;
@@ -161,9 +158,6 @@ public class SettingNew extends MaterialSettings {
         }).setDefaultValue(MySp.getIsBigRing()));
 
 
-
-
-
         addItem(new DividerItem(ctx));
         addItem(new CheckboxItem(this, "").setTitle("自动开启夜间模式").setSubtitle("开始时间18:00，结束时间6:00").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
 
@@ -172,9 +166,6 @@ public class SettingNew extends MaterialSettings {
                 MySp.setIsAutoNight(b);
             }
         }).setDefaultValue(MySp.getIsAutoNight()));
-
-
-
 
 
         addItem(new DividerItem(ctx));
@@ -187,12 +178,10 @@ public class SettingNew extends MaterialSettings {
         }).setDefaultValue(MySp.getIsLock()));
 
 
-
-
-        String taskTitle ="";
+        String taskTitle = "";
         final TaskData taskData = DbUtils.getTkById(MySp.getDefaultTk());
-        if (taskData!=null&&XUtil.notEmptyOrNull(taskData.getTitle())){
-            taskTitle =taskData.getTitle();
+        if (taskData != null && XUtil.notEmptyOrNull(taskData.getTitle())) {
+            taskTitle = taskData.getTitle();
         }
         addItem(new DividerItem(ctx));
         addItem(new TextItem(this, "").setTitle("默认笔记本").setSubtitle(taskTitle).setOnclick(new TextItem.OnClickListener() {
@@ -206,31 +195,58 @@ public class SettingNew extends MaterialSettings {
         }));
 
 
-        String pjTitle ="";
+        String pjTitle = "";
         final ProjectData projectData = DbUtils.getPjById(MySp.getDefaultPj());
-        if (projectData!=null&&XUtil.notEmptyOrNull(projectData.getTitle())){
-            pjTitle =projectData.getTitle();
+        if (projectData != null && XUtil.notEmptyOrNull(projectData.getTitle())) {
+            pjTitle = projectData.getTitle();
         }
         addItem(new DividerItem(ctx));
         addItem(new TextItem(this, "").setTitle("默认笔记本组").setSubtitle(pjTitle).setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem textItem) {
-                Intent    newIntent = new Intent(ctx, ProjectDetailsActivity.class);
+                Intent newIntent = new Intent(ctx, ProjectDetailsActivity.class);
                 newIntent.putExtra(Constant.KEY_PARAM_DATA, projectData);
                 startActivity(newIntent);
             }
         }));
 
 
+        addItem(new HeaderItem(this).setTitle("备份"));
 
+        addItem(new TextItem(ctx, "").setTitle("邮箱备份").setOnclick(new TextItem.OnClickListener() {
+            @Override
+            public void onClick(TextItem textItem) {
+                final String email_addr = MySp.get(SpConstant.email_addr, String.class, "");
+                if (XUtil.notEmptyOrNull(email_addr)) {
+                    sendEmail(email_addr);
+                } else {
+                    XUtil.tShort("请先配置邮箱备份地址");
+                }
 
+            }
+        }));
 
+        addItem(new TextItem(ctx, "").setTitle("邮箱备份地址").setOnclick(new TextItem.OnClickListener() {
+            public void onClick(TextItem textItem) {
+                final EditText editText = new EditText(ctx);
+                editText.setTextColor(getResources().getColor(R.color.colorPrimary));
 
-
-
-
-
-        addItem(new DividerItem(ctx));
+                final String email_addr = MySp.get(SpConstant.email_addr, String.class, "");
+                if (XUtil.notEmptyOrNull(email_addr)) {
+                    editText.setText(email_addr);
+                }
+                new MaterialDialog.Builder(ctx).title("邮箱").customView(editText, false).positiveText("好").negativeText("不").onAny(new MaterialDialog.SingleButtonCallback() {
+                    public void onClick(@NonNull MaterialDialog paramAnonymous3MaterialDialog, @NonNull DialogAction which) {
+                        if (which == DialogAction.POSITIVE) {
+                            String email = editText.getText().toString();
+                            if (XUtil.notEmptyOrNull(email)) {
+                                MySp.put(SpConstant.email_addr, email);
+                            }
+                        }
+                    }
+                }).show();
+            }
+        }));
         addItem(new TextItem(ctx, "").setTitle("数据备份").setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem textItem) {
@@ -259,14 +275,21 @@ public class SettingNew extends MaterialSettings {
             }
         }));
         addItem(new DividerItem(ctx));
-        String buildDate  = "2017-04-09 07:24:10";
-        addItem(new TextItem(ctx, "").setTitle("检查更新").setSubtitle("当前版本:" + getVersionName()+" @"+buildDate).setOnclick(new TextItem.OnClickListener() {
+        String buildDate = "2017-04-09 07:24:10";
+        addItem(new TextItem(ctx, "").setTitle("检查更新").setSubtitle("当前版本:" + getVersionName() + " @" + buildDate).setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem textItem) {
                 XUtil.openUrl(Constant.update_url);
             }
         }));
 
+    }
+
+    private void sendEmail(String email) {
+        String backUpString = backUpDbDo(true);
+        if (XUtil.notEmptyOrNull(email) && XUtil.notEmptyOrNull(backUpString)) {
+            XUtil.sendEmail(ctx, email, backUpString);
+        }
     }
 
 
@@ -329,20 +352,27 @@ public class SettingNew extends MaterialSettings {
         menu.add("back").setIcon(XUtil.initIconWhite(Iconify.IconValue.md_arrow_back)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
     }
+    private String backUpDbDo() {
+      return   backUpDbDo(false);
+    }
 
-
-    private void backUpDbDo() {
+    private String backUpDbDo(boolean isEmail) {
         try {
             String newPath = MyPath.getPathDb() + File.separator + XUtil.getDateY_M_D() + File.separator + Constant.DB_NAME;
             boolean flag = XUtil.copyFileTo(new File(Constant.DB_PATH), new File(newPath));
             if (flag) {
-                XUtil.tLong("已备份~ ");
+                if (!isEmail){
+                    XUtil.tLong("已备份~ ");
+                }
+                return newPath;
             } else {
                 XUtil.tShort("数据备份失败~");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     // 对文件进行排序
@@ -399,7 +429,7 @@ public class SettingNew extends MaterialSettings {
         }
 
 
-        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
 //                .customView(view)
                 .title("数据恢复")
                 .items(item)

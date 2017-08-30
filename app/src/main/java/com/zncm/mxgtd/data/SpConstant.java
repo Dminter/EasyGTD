@@ -12,4 +12,5 @@ public class SpConstant {
     public static final String isDeleteConfirm = "isDeleteConfirm";
     public static final String isAddTaskByNotify = "isAddTaskByNotify";
     public static final String last_import_path = "last_import_path";
+    public static final String email_addr = "email_addr";
 }
