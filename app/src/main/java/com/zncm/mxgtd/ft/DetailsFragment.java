@@ -35,7 +35,6 @@ import com.zncm.mxgtd.data.RemindData;
 import com.zncm.mxgtd.data.SpConstant;
 import com.zncm.mxgtd.data.TaskData;
 import com.zncm.mxgtd.ui.ItemDetailsActivity;
-import com.zncm.mxgtd.ui.TextActivity;
 import com.zncm.mxgtd.ui.TkDetailsActivity;
 import com.zncm.mxgtd.utils.DbUtils;
 import com.zncm.mxgtd.utils.MySp;
@@ -49,7 +48,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *详情界面，任务【进展，清单，提醒，合并显示】
+ * 详情界面，任务【进展，清单，提醒，合并显示】
  */
 public class DetailsFragment extends BaseListFragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private ProjectAdapter mAdapter;
@@ -123,10 +122,21 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
 
 
                 holder.tvContent.setVisibility(View.GONE);
+                holder.cbCheck.setVisibility(View.GONE);
+                holder.cbCheck.setChecked(false);
                 if (EnumData.DetailBEnum.progress.getValue() == data.getBusiness_type()) {
                     holder.cardView.setCardBackgroundColor(getResources().getColor(R.color.colorBgprogress));
                     holder.tvTag.setVisibility(View.GONE);
                 } else if (EnumData.DetailBEnum.check.getValue() == data.getBusiness_type()) {
+                    holder.cbCheck.setVisibility(View.VISIBLE);
+                    holder.cbCheck.setChecked(data.getStatus() == EnumData.StatusEnum.OFF.getValue());
+                    holder.cbCheck.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CheckListData tmp = clDao.queryForId(data.getId());
+                            checkDo(data.getStatus() == EnumData.StatusEnum.OFF.getValue(), tmp, position);
+                        }
+                    });
                     holder.tvTag.setVisibility(View.GONE);
                     if (data.getStatus() == EnumData.StatusEnum.ON.getValue()) {
                         holder.cardView.setCardBackgroundColor(getResources().getColor(R.color.colorBgcheck_));
@@ -287,23 +297,13 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                         switch (which) {
                             case 0:
-                                if (isChecked) {
-                                    data.setStatus(EnumData.StatusEnum.ON.getValue());
-                                } else {
-                                    data.setStatus(EnumData.StatusEnum.OFF.getValue());
-                                }
-                                data.setModify_time(System.currentTimeMillis());
-                                clDao.update(data);
-
-                                DetailsData tmp = datas.get(pos);
-                                tmp.setStatus(data.getStatus());
-                                refreshCell(tmp, false);
+                                checkDo(isChecked, data, pos);
                                 break;
                             case 1:
                                 add3Dlg(data, pos);
                                 break;
                             case 2:
-                               XUtil.themeMaterialDialog(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("删除确认?")
                                         .content(data.getTitle())
                                         .positiveText("确定")
@@ -336,6 +336,20 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                     }
                 })
                 .show();
+    }
+
+    private void checkDo(boolean isChecked, CheckListData data, int pos) {
+        if (isChecked) {
+            data.setStatus(EnumData.StatusEnum.ON.getValue());
+        } else {
+            data.setStatus(EnumData.StatusEnum.OFF.getValue());
+        }
+        data.setModify_time(System.currentTimeMillis());
+        clDao.update(data);
+
+        DetailsData tmp = datas.get(pos);
+        tmp.setStatus(data.getStatus());
+        refreshCell(tmp, false);
     }
 
     public void operateProgressData(final ProgressData data, final int position) {
@@ -584,7 +598,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
 
         });
         view.addView(editText);
-        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("保存继续")
                 .negativeText(bUpadte ? "修改" : "添加")
@@ -729,7 +743,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
             spTime.setVisibility(View.GONE);
             spTimeRepeat.setSelection(data.getType());
         }
-        MaterialDialog md =  XUtil.themeMaterialDialog(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText(bUpadte ? "修改" : "添加")
                 .negativeText("提醒时间")
