@@ -88,6 +88,7 @@ public class TaskFragment extends BaseListFragment {
                 final TaskData tk = datas.get(position);
                 holder.tvContent.setVisibility(View.GONE);
                 holder.tvTag.setVisibility(View.GONE);
+                holder.cbCheck.setVisibility(View.GONE);
 
 
                 if (XUtil.notEmptyOrNull(tk.getTitle())) {
@@ -102,6 +103,16 @@ public class TaskFragment extends BaseListFragment {
 
 
                     holder.tvTitle.setText(title);
+
+                    if (!MySp.getShowSimple()) {
+                        if (tk.getTime() != null) {
+                            holder.tvTime.setText(XUtil.getDateYMDEHM(tk.getTime()));
+                            holder.tvTime.setVisibility(View.VISIBLE);
+                        } else {
+                            holder.tvTime.setVisibility(View.GONE);
+                        }
+                    }
+
 
                     if (title.length() < Constant.MAX_LEN) {
                         holder.tvTitle.setTextSize(Constant.FS_1);

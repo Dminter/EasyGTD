@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -60,10 +61,16 @@ public class ProjectMainFt extends BaseBusFragment {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(0);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+        /**
+         *使用support TabLayout 代替 PagerSlidingTabStrip
+         */
+        TabLayout  mTabLayout = (TabLayout) view.findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(getActivity(), mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
+//        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
+//        indicator.setViewPager(mViewPager);
+//        XUtil.viewPagerRandomAnimation(mViewPager);
+//        XUtil.initIndicatorTheme(indicator);
 
         Toolbar  toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         if (toolbar != null) {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -74,10 +75,9 @@ public class TasksFt extends BaseFragment {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(0);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+        TabLayout mTabLayout = (TabLayout) view.findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(getActivity(), mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setBackgroundColor(MySp.getTheme());

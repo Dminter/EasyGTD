@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -18,6 +19,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -70,6 +72,14 @@ import java.util.TimerTask;
  */
 public class XUtil {
 
+    /**
+     * tab 样式统一初始化
+     */
+    public static void initTabLayout(Context ctx, TabLayout mTabLayout) {
+        mTabLayout.setBackgroundColor(MySp.getTheme());
+        mTabLayout.setSelectedTabIndicatorColor(ctx.getResources().getColor(R.color.white));
+        mTabLayout.setTabTextColors(ColorStateList.valueOf(ctx.getResources().getColor(R.color.white)));
+    }
     public static SpannableString getSerachString(String str, String searchWord) {
         if (!notEmptyOrNull(str)) {
             return new SpannableString("");

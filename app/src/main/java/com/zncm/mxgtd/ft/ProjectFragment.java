@@ -57,6 +57,17 @@ public class ProjectFragment extends BaseListFragment {
                 final ProjectData pj = datas.get(position);
                 holder.tvContent.setVisibility(View.GONE);
                 holder.tvTag.setVisibility(View.GONE);
+                holder.cbCheck.setVisibility(View.GONE);
+
+                if (!MySp.getShowSimple()) {
+                    if (pj.getTime() != null) {
+                        holder.tvTime.setText(XUtil.getDateYMDEHM(pj.getTime()));
+                        holder.tvTime.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.tvTime.setVisibility(View.GONE);
+                    }
+                }
+
                 if (XUtil.notEmptyOrNull(pj.getTitle())) {
                     holder.tvTitle.setVisibility(View.VISIBLE);
                     holder.tvTitle.setText(pj.getTitle());

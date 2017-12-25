@@ -2,6 +2,7 @@ package com.zncm.mxgtd.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -51,11 +52,9 @@ public class SearchFt extends Fragment {
         mViewPager = (WrapContentHeightViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
         mViewPager.setOffscreenPageLimit(TITLES.length);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) view.findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
-        indicator.setVisibility(View.GONE);
+        TabLayout mTabLayout = (TabLayout) view.findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(getActivity(), mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
 

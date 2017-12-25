@@ -2,6 +2,7 @@ package com.zncm.mxgtd.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -44,10 +45,9 @@ public class ProjectDetailsActivity extends BaseActivity {
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(TITLES.length);
         mViewPager.setCurrentItem(0);
-        PagerSlidingTabStrip indicator = (PagerSlidingTabStrip) findViewById(R.id.indicator);
-        indicator.setViewPager(mViewPager);
-        XUtil.viewPagerRandomAnimation(mViewPager);
-        XUtil.initIndicatorTheme(indicator);
+        TabLayout mTabLayout = (TabLayout) findViewById(R.id.mTabLayout);
+        XUtil.initTabLayout(this, mTabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
         Serializable dataParam = getIntent().getSerializableExtra(Constant.KEY_PARAM_DATA);
         projectData = (ProjectData) dataParam;
         if (projectData == null) {

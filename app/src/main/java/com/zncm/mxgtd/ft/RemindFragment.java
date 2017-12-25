@@ -107,6 +107,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
             public void setData(int position, PjViewHolder holder) {
                 final RemindData data = datas.get(position);
 
+                holder.cbCheck.setVisibility(View.GONE);
 
                 String title = data.getContent();
 //                if (data.getStatus() == EnumData.StatusEnum.ON.getValue()) {
@@ -124,6 +125,17 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
                 } else {
                     holder.tvTitle.setVisibility(View.GONE);
                 }
+
+
+                if (!MySp.getShowSimple()) {
+                    if (data.getTime() != null) {
+                        holder.tvTime.setText(XUtil.getDateYMDEHM(data.getTime()));
+                        holder.tvTime.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.tvTime.setVisibility(View.GONE);
+                    }
+                }
+
 
 
 //                if (data.getRemind_time() < System.currentTimeMillis()&&data.getStatus() == EnumData.StatusEnum.ON.getValue()){
