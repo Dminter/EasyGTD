@@ -126,7 +126,7 @@ public class ProjectFragment extends BaseListFragment {
                                 } else {
                                     data.setStatus(EnumData.StatusEnum.OFF.getValue());
                                 }
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .content(isChecked ? "重启笔记本组？" : "完成笔记本组？")
                                         .positiveText("确定")
                                         .negativeText("取消")
@@ -164,7 +164,7 @@ public class ProjectFragment extends BaseListFragment {
                                 XUtil.copyText(ctx, data.getTitle());
                                 break;
                             case 2:
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("删除笔记本组!")
                                         .content("删除笔记本组将会连带删除笔记本组下所有的笔记本,确认删除?")
                                         .theme(Theme.LIGHT)
@@ -179,7 +179,7 @@ public class ProjectFragment extends BaseListFragment {
                                         .show();
                                 break;
                             case 3:
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("克隆笔记本组!")
                                         .content("克隆笔记本组将会连带克隆笔记本组下所有的笔记本,确认进行克隆?")
                                         .theme(Theme.LIGHT)

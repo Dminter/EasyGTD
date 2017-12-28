@@ -124,7 +124,7 @@ public class SettingNew extends MaterialSettings {
                     }
                     items.add(i + "");
                 }
-                new MaterialDialog.Builder(ctx)
+                XUtil.themeMaterialDialog(ctx)
                         .title("网格大小-列数")
                         .items(items)
                         .theme(Theme.LIGHT)
@@ -250,7 +250,7 @@ public class SettingNew extends MaterialSettings {
 
 
     private void thank() {
-        new MaterialDialog.Builder(this)
+        XUtil.themeMaterialDialog(ctx)
                 .title("特别感谢")
                 .content("AlipayZeroSdk\nmaterial-dialogs\nmaterialtabstrip\normlite\nmaterialsearchview\n")
                 .positiveText("知")
@@ -378,14 +378,13 @@ public class SettingNew extends MaterialSettings {
         }
 
 
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
-//                .customView(view)
+        MaterialDialog md =   XUtil.themeMaterialDialog(ctx)
                 .title("数据恢复")
                 .items(item)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog materialDialog, View view, final int pos, CharSequence charSequence) {
-                        new MaterialDialog.Builder(ctx)
+                        XUtil.themeMaterialDialog(ctx)
                                 .title("注意!!!")
                                 .content("恢复到之前版本,当前版本数据将会丢失,请先备份!")
                                 .theme(Theme.LIGHT)
@@ -473,7 +472,7 @@ public class SettingNew extends MaterialSettings {
         }
         if (canImport) {
             if (fileName.endsWith(".db")) {
-                new MaterialDialog.Builder(ctx)
+                XUtil.themeMaterialDialog(ctx)
                         .title("注意!!!")
                         .content("恢复到之前版本,当前版本数据将会丢失,请先备份!")
                         .theme(Theme.LIGHT)
@@ -533,7 +532,7 @@ public class SettingNew extends MaterialSettings {
         editText.setTextColor(getResources().getColor(R.color.material_light_black));
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .title("恢复确认(" + x + "+" + y + " =?)")
                 .theme(Theme.LIGHT)

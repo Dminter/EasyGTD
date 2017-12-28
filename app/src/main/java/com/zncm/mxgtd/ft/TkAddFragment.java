@@ -228,7 +228,7 @@ public class TkAddFragment extends BaseDbFragment implements View.OnClickListene
         view.addView(editText);
 
 
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =    XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("修改")
                 .negativeText("取消")
@@ -374,7 +374,7 @@ public class TkAddFragment extends BaseDbFragment implements View.OnClickListene
                 XUtil.tShort("笔记本添加成功~~");
                 break;
             case 3:
-                new MaterialDialog.Builder(ctx)
+                XUtil.themeMaterialDialog(ctx)
                         .title("删除笔记本!")
                         .theme(Theme.LIGHT)
                         .positiveText("删除")
@@ -612,7 +612,7 @@ public class TkAddFragment extends BaseDbFragment implements View.OnClickListene
     }
 
     private void initLevel() {
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .title("重要性")
                 .items(new String[]{EnumData.TaskLevelEnum.NO.getStrName(), EnumData.TaskLevelEnum.LOW.getStrName(), EnumData.TaskLevelEnum.MIDDLE.getStrName(), EnumData.TaskLevelEnum.HIGH.getStrName()})
                 .itemsCallback(new MaterialDialog.ListCallback() {
@@ -662,7 +662,7 @@ public class TkAddFragment extends BaseDbFragment implements View.OnClickListene
 
 
         //bProjectFinish
-        final MaterialDialog md = new MaterialDialog.Builder(ctx)
+        final MaterialDialog md =    XUtil.themeMaterialDialog(ctx)
                 .positiveText("取消")
                 .neutralText(bProjectFinish ? "进行中的笔记本组" : "已完的笔记本组")
                 .items(item)

@@ -438,7 +438,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                                 add2Dlg(data, pos);
                                 break;
                             case 3:
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("删除确认?")
                                         .content(data.getContent())
                                         .theme(Theme.LIGHT)
@@ -900,7 +900,7 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                                 } catch (Exception e) {
                                 }
                                 remindData.setId(_id);
-                                if (remind_time < XUtil.getLongTime() && remindData.getType() == 0) {
+                                if (remind_time < XUtil.getLongTime() && remindData.getType() == 0 && bUpadte) {
                                     remindData.setStatus(EnumData.StatusEnum.OUTDATE.getValue());
                                     rdDao.update(remindData);
                                     DetailsData tmp = datas.get(pos);

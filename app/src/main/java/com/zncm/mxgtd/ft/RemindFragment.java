@@ -137,7 +137,6 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
                 }
 
 
-
 //                if (data.getRemind_time() < System.currentTimeMillis()&&data.getStatus() == EnumData.StatusEnum.ON.getValue()){
 //
 //                }else {
@@ -165,7 +164,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
 
                             }
                         } else {
-                            show = Math.abs(diffDay) + "天 " + XUtil.diffWeekDays(Math.abs(diffDay));
+                            show = Math.abs(diffDay) + "天 ";
                         }
                     }
                     holder.tvTag.setVisibility(View.VISIBLE);
@@ -288,7 +287,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
 
     public void operate(final RemindData data) {
         final boolean isChecked = EnumData.StatusEnum.OUTDATE.getValue() == data.getStatus();
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "提醒" : "不提醒", "复制", "编辑", "删除", "批量删除"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -324,7 +323,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
                                 break;
                             case 3:
                                 if (MySp.get(SpConstant.isDeleteConfirm, Boolean.class, true)) {
-                                    new MaterialDialog.Builder(ctx)
+                                    XUtil.themeMaterialDialog(ctx)
                                             .title("删除确认?")
                                             .content(data.getContent())
                                             .theme(Theme.LIGHT)
@@ -352,7 +351,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
                                     items[i] = datas.get(i).getContent();
                                 }
 
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("批量删除")
                                         .items(items)
                                         .itemColor(getResources().getColor(R.color.red))
@@ -408,7 +407,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
                                              public boolean onLongClick(View v) {
                                                  final String items[] = new String[]{"10秒", "30秒", "1分钟", "2分钟", "3分钟", "5分钟", "10分钟", "15分钟", "20分钟", "25分钟", "30分钟",
                                                          "40分钟", "45分钟", "50分钟", "1小时", "2小时", "3小时", "4小时", "1天", "2天", "3天", "4天", "5天", "6天", "7天", "15天", "30天", "45天", "60天", "90天", "一年"};
-                                                 new MaterialDialog.Builder(ctx)
+                                                 XUtil.themeMaterialDialog(ctx)
                                                          .title("倒计时")
                                                          .items(items)
                                                          .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
@@ -781,7 +780,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
         }
 
 
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =    XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText(bUpadte ? "修改" : "添加")
                 .negativeText("提醒时间")

@@ -722,7 +722,7 @@ public class XUtil {
     }
 
     public static void aboutUsDlg(Context ctx) {
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .title("关于我们")
                 .content("1.使用中遇到任何问题和意见反馈可加入产品交流群" + Constant.AUTHOR_QQ_GROUP + "\n2.注意:请勿使用系统->应用程序->清除数据,那样将会丢失本软件的一切数据,后果自担")
                 .theme(Theme.LIGHT)  // the default is light, so you don't need this line

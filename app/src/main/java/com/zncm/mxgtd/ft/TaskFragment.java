@@ -272,7 +272,7 @@ public class TaskFragment extends BaseListFragment {
 
     public void operate(final TaskData data, final int pos) {
         final boolean isChecked = EnumData.StatusEnum.OFF.getValue() == data.getStatus();
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .items(new String[]{isChecked ? "未完成" : "已完成", "序号", "删除", "编辑"})
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -294,7 +294,7 @@ public class TaskFragment extends BaseListFragment {
                                 break;
 
                             case 2:
-                                new MaterialDialog.Builder(ctx)
+                                XUtil.themeMaterialDialog(ctx)
                                         .title("删除笔记本!")
                                         .theme(Theme.LIGHT)
                                         .positiveText("删除")
@@ -396,7 +396,7 @@ public class TaskFragment extends BaseListFragment {
         editText.setText(data.getLevel() + "");
         editText.setBackgroundDrawable(new BitmapDrawable());
         view.addView(editText);
-        MaterialDialog md = new MaterialDialog.Builder(ctx)
+        MaterialDialog md =    XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText("修改")
                 .neutralText("取消")
@@ -461,7 +461,7 @@ public class TaskFragment extends BaseListFragment {
     }
 
     void initLevel(final TaskData data) {
-        new MaterialDialog.Builder(ctx)
+        XUtil.themeMaterialDialog(ctx)
                 .title("重要性")
                 .items(new String[]{EnumData.TaskLevelEnum.NO.getStrName(), EnumData.TaskLevelEnum.LOW.getStrName(), EnumData.TaskLevelEnum.MIDDLE.getStrName(), EnumData.TaskLevelEnum.HIGH.getStrName()})
                 .itemsCallback(new MaterialDialog.ListCallback() {
