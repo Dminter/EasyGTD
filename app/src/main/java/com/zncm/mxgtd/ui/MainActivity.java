@@ -2,7 +2,6 @@ package com.zncm.mxgtd.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
@@ -61,9 +60,9 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         fragments.put(R.id.tab_remind, new RdFt());
         fragmentManager = getSupportFragmentManager();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        if (MySp.getIsNight()){
+        if (MySp.getIsNight()) {
             bottomBar.setActiveTabColor(getResources().getColor(R.color.material_light_black));
-        }else {
+        } else {
             bottomBar.setActiveTabColor(MySp.getTheme());
         }
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -202,6 +201,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         SubMenu sub = menu.addSubMenu("");
         sub.setIcon(XUtil.initIconWhite(Iconify.IconValue.md_more_vert));
         sub.add(0, 5, 0, "回顾今天");
+        sub.add(0, 8, 0, "未完成");
         sub.add(0, 6, 0, "收藏");
         sub.add(0, 1, 0, "设置");
         sub.add(0, 2, 0, "白天/夜间");
@@ -255,6 +255,11 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                         .preselect(MySp.getTheme())  // optionally preselects a color
                         .dynamicButtonColor(true)  // defaults to true, false will disable changing action buttons' color to currently selected color
                         .show();
+                break;
+            case 8:
+                newIntent = new Intent(ctx, TkDetailsActivity.class);
+                newIntent.putExtra("query", EnumData.queryEnum._UNFINISH_CHECK.getStrName());
+                startActivity(newIntent);
                 break;
         }
 

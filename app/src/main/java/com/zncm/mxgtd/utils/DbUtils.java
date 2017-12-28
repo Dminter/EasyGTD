@@ -384,6 +384,11 @@ public class DbUtils {
                 MY_SQL_QUERY = "SELECT id,time,title as content,1 as business_type,status,tk_id,0 as remind_time,0 as type FROM checklistdata WHERE content like '%" + content + "%' AND status <>3 UNION SELECT id,time,content,2,status,tk_id,0,0 FROM progressdata WHERE content like '%" + content + "%' AND status <>2 UNION SELECT id,time,content,3,status,tk_id,remind_time,type FROM reminddata WHERE content like '%" + content + "%' AND status <>3 ORDER BY time DESC LIMIT " + startRow + "," + endRow;
             }
 
+            if (content.equals(EnumData.queryEnum._UNFINISH_CHECK.getStrName())) {
+                MY_SQL_QUERY = "SELECT id,time,title as content,1 as business_type,status,tk_id,0 as remind_time,0 as type FROM checklistdata WHERE status = 1  ORDER BY time DESC LIMIT " + startRow + "," + endRow;
+            }
+
+
 
             XUtil.debug("MY_SQL_QUERY=>" + MY_SQL_QUERY);
 

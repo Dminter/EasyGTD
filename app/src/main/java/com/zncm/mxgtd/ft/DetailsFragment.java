@@ -520,8 +520,10 @@ public class DetailsFragment extends BaseListFragment implements DatePickerDialo
                 }
                 if (XUtil.notEmptyOrNull(query)) {
                     list = DbUtils.getDetailsDatasByContent(query, datas.size(), datas.size() + Constant.MAX_DB_QUERY);
+                    addButton.setVisibility(View.GONE);
                 } else if (curTaskData != null) {
                     list = DbUtils.getDetailsDatas(curTaskData.getId(), datas.size(), datas.size() + Constant.MAX_DB_QUERY);
+                    addButton.setVisibility(View.VISIBLE);
                 }
                 if (XUtil.listNotNull(list)) {
                     canLoadMore = (list.size() == Constant.MAX_DB_QUERY);

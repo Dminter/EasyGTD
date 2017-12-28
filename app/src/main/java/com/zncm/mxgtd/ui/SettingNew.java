@@ -32,12 +32,10 @@ import com.kenumir.materialsettings.storage.StorageInterface;
 import com.malinskiy.materialicons.Iconify;
 import com.zncm.mxgtd.R;
 import com.zncm.mxgtd.data.Constant;
-import com.zncm.mxgtd.data.DetailsData;
 import com.zncm.mxgtd.data.EnumData;
 import com.zncm.mxgtd.data.ProjectData;
 import com.zncm.mxgtd.data.SpConstant;
 import com.zncm.mxgtd.data.TaskData;
-import com.zncm.mxgtd.ft.DetailsFragment;
 import com.zncm.mxgtd.ft.RefreshEvent;
 import com.zncm.mxgtd.utils.DbUtils;
 import com.zncm.mxgtd.utils.MyPath;
@@ -162,16 +160,10 @@ public class SettingNew extends MaterialSettings {
         }).setDefaultValue(MySp.getIsBigRing()));
 
 
-
-
-
-
-
-
-        String taskTitle ="";
+        String taskTitle = "";
         final TaskData taskData = DbUtils.getTkById(MySp.getDefaultTk());
-        if (taskData!=null&&XUtil.notEmptyOrNull(taskData.getTitle())){
-            taskTitle =taskData.getTitle();
+        if (taskData != null && XUtil.notEmptyOrNull(taskData.getTitle())) {
+            taskTitle = taskData.getTitle();
         }
         addItem(new DividerItem(ctx));
         addItem(new TextItem(this, "").setTitle("默认笔记本").setSubtitle(taskTitle).setOnclick(new TextItem.OnClickListener() {
@@ -185,28 +177,20 @@ public class SettingNew extends MaterialSettings {
         }));
 
 
-        String pjTitle ="";
+        String pjTitle = "";
         final ProjectData projectData = DbUtils.getPjById(MySp.getDefaultPj());
-        if (projectData!=null&&XUtil.notEmptyOrNull(projectData.getTitle())){
-            pjTitle =projectData.getTitle();
+        if (projectData != null && XUtil.notEmptyOrNull(projectData.getTitle())) {
+            pjTitle = projectData.getTitle();
         }
         addItem(new DividerItem(ctx));
         addItem(new TextItem(this, "").setTitle("默认笔记本组").setSubtitle(pjTitle).setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem textItem) {
-                Intent    newIntent = new Intent(ctx, ProjectDetailsActivity.class);
+                Intent newIntent = new Intent(ctx, ProjectDetailsActivity.class);
                 newIntent.putExtra(Constant.KEY_PARAM_DATA, projectData);
                 startActivity(newIntent);
             }
         }));
-
-
-
-
-
-
-
-
 
 
         addItem(new DividerItem(ctx));
@@ -237,9 +221,18 @@ public class SettingNew extends MaterialSettings {
                 XUtil.copyText(SettingNew.this, "xm0ff255");
             }
         }));
+
+
         addItem(new DividerItem(ctx));
-        String buildDate  = "2017-04-09 07:24:10";
-        addItem(new TextItem(ctx, "").setTitle("检查更新").setSubtitle("当前版本:" + getVersionName()+" @"+buildDate).setOnclick(new TextItem.OnClickListener() {
+        addItem(new TextItem(ctx, "").setTitle("Tips").setSubtitle("搜索按钮[@20171228]可搜索当日的记录").setOnclick(new TextItem.OnClickListener() {
+            @Override
+            public void onClick(TextItem textItem) {
+            }
+        }));
+
+        addItem(new DividerItem(ctx));
+        String buildDate = "2017-04-09 07:24:10";
+        addItem(new TextItem(ctx, "").setTitle("检查更新").setSubtitle("当前版本:" + getVersionName() + " @" + buildDate).setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem textItem) {
                 XUtil.openUrl(Constant.update_url);
@@ -378,7 +371,7 @@ public class SettingNew extends MaterialSettings {
         }
 
 
-        MaterialDialog md =   XUtil.themeMaterialDialog(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
                 .title("数据恢复")
                 .items(item)
                 .itemsCallback(new MaterialDialog.ListCallback() {
