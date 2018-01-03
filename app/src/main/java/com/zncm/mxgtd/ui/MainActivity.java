@@ -41,13 +41,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ *主界面
+ */
 public class MainActivity extends BaseActivity implements ColorChooserDialog.ColorCallback {
     private Fragment fragment = null;
     private Map<Integer, Fragment> fragments = new HashMap<>();
-    FragmentManager fragmentManager;
-    MaterialSearchView searchView;
-    BottomBar bottomBar;
+    private FragmentManager fragmentManager;
+    private MaterialSearchView searchView;
+    private BottomBar bottomBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -248,12 +250,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 break;
             case 7:
                 new ColorChooserDialog.Builder(this, R.string.color_palette)
-                        .accentMode(false)  // when true, will display accent palette instead of primary palette
-                        .doneButton(R.string.md_done_label)  // changes label of the done button
-                        .cancelButton(R.string.md_cancel_label)  // changes label of the cancel button
-                        .backButton(R.string.md_back_label)  // changes label of the back button
-                        .preselect(MySp.getTheme())  // optionally preselects a color
-                        .dynamicButtonColor(true)  // defaults to true, false will disable changing action buttons' color to currently selected color
+                        .accentMode(false)
+                        .doneButton(R.string.md_done_label)
+                        .cancelButton(R.string.md_cancel_label)
+                        .backButton(R.string.md_back_label)
+                        .preselect(MySp.getTheme())
+                        .dynamicButtonColor(true)
                         .show();
                 break;
             case 8:
