@@ -164,7 +164,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
 
                             }
                         } else {
-                            show = Math.abs(diffDay) + "天 ";
+                            show = Math.abs(diffDay) + "天 " + " " + XUtil.diffYMD(Math.abs(diffDay));
                         }
                     }
                     holder.tvTag.setVisibility(View.VISIBLE);
@@ -692,7 +692,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
 
     private void initDatePicker() {
         DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.setYearRange(2000, 2025);
+        datePickerDialog.setYearRange(1930, 2030);
         datePickerDialog.show(getActivity().getSupportFragmentManager(), "datepicker");
     }
 
@@ -780,7 +780,7 @@ public class RemindFragment extends BaseListFragment implements DatePickerDialog
         }
 
 
-        MaterialDialog md =    XUtil.themeMaterialDialog(ctx)
+        MaterialDialog md = XUtil.themeMaterialDialog(ctx)
                 .customView(view, true)
                 .positiveText(bUpadte ? "修改" : "添加")
                 .negativeText("提醒时间")

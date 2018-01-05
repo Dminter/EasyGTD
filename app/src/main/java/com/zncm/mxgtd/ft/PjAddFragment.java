@@ -266,7 +266,7 @@ public class PjAddFragment extends BaseDbFragment implements View.OnClickListene
 
     private void initDatePicker() {
         DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.setYearRange(2000, 2025);
+        datePickerDialog.setYearRange(1930, 2030);
         datePickerDialog.show(getActivity().getSupportFragmentManager(), "datepicker");
     }
 

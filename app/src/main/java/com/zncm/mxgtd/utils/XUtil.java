@@ -18,7 +18,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
@@ -80,6 +79,7 @@ public class XUtil {
         mTabLayout.setSelectedTabIndicatorColor(ctx.getResources().getColor(R.color.white));
         mTabLayout.setTabTextColors(ColorStateList.valueOf(ctx.getResources().getColor(R.color.white)));
     }
+
     public static SpannableString getSerachString(String str, String searchWord) {
         if (!notEmptyOrNull(str)) {
             return new SpannableString("");
@@ -98,8 +98,7 @@ public class XUtil {
     }
 
     /**
-     * @param activity
-     * @param proText  缩放的倍数
+     * @param proText 缩放的倍数
      */
     public static void scaleTextSize(Activity activity, float proText) {
         float size;
@@ -492,14 +491,14 @@ public class XUtil {
 
     public static void initBarTheme(Activity ctx, Toolbar toolbar) {
 
-            toolbar.setBackgroundColor(MySp.getTheme());
-            StatusBarCompat.setStatusBarColor(ctx, MySp.getTheme());
+        toolbar.setBackgroundColor(MySp.getTheme());
+        StatusBarCompat.setStatusBarColor(ctx, MySp.getTheme());
 
 
     }
 
     public static MaterialDialog.Builder themeMaterialDialog(Context context) {
-        return new MaterialDialog.Builder(context).theme(MySp.getIsNight()?Theme.DARK:Theme.LIGHT);
+        return new MaterialDialog.Builder(context).theme(MySp.getIsNight() ? Theme.DARK : Theme.LIGHT);
     }
 
 
@@ -694,7 +693,6 @@ public class XUtil {
     }
 
 
-
     public static void rateUs(Activity ctx) {
         try {
             Uri uri = Uri.parse("market://details?id=com.zncm.mxgtd");
@@ -762,8 +760,8 @@ public class XUtil {
         indicator.setTextColor(ctx.getResources().getColor(R.color.white));
 
 
-            indicator.setIndicatorColor(MySp.getTheme());
-            indicator.setBackgroundColor(MySp.getTheme());
+        indicator.setIndicatorColor(MySp.getTheme());
+        indicator.setBackgroundColor(MySp.getTheme());
 
 
 //        Context ctx = MyApplication.getInstance().ctx;
@@ -997,6 +995,26 @@ public class XUtil {
         int wk = dayDiff / 7;
         int wkLeft = dayDiff - wk * 7;
         return wkLeft == 0 ? wk + "" : wk + "/" + wkLeft;
+    }
+
+
+    public static String diffYMD(int dayDiff) {
+        int year = dayDiff / 365;
+        int month = (dayDiff - year * 365) / 30;
+        int day = dayDiff - year * 365 - month * 30;
+
+        StringBuilder sbInfo =new StringBuilder();
+        if (year>0){
+            sbInfo.append(year).append("年");
+        }
+        if (month>0){
+            sbInfo.append(month).append("月");
+        }
+        if (day>0){
+            sbInfo.append(day).append("日");
+        }
+
+        return sbInfo.toString();
     }
 
     public static String diffTime(Long time) {
