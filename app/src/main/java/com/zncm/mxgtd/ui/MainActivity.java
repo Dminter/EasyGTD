@@ -337,7 +337,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
             Intent intent = new Intent(ctx, MainActivity.class);
             startActivity(intent);
         }
-
     }
 
 
