@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":app" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="EasyGTD" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":app" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
@@ -109,43 +109,43 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="design-25.0.0" level="project" />
-    <orderEntry type="library" name="supertoasts-1.3.4" level="project" />
-    <orderEntry type="library" name="commons-0.9.1.0" level="project" />
-    <orderEntry type="library" name="MaterialSettings-v.1.2.2" level="project" />
-    <orderEntry type="library" name="materialicons-1.0.1" level="project" />
-    <orderEntry type="library" name="library-0.0.1" level="project" />
-    <orderEntry type="library" name="floatingactionbutton-1.0.4" level="project" />
-    <orderEntry type="library" name="bottom-bar-2.0.2" level="project" />
-    <orderEntry type="library" name="ormlite-android-4.48" level="project" />
-    <orderEntry type="library" name="support-core-ui-25.3.1" level="project" />
-    <orderEntry type="library" name="cardview-v7-25.3.1" level="project" />
-    <orderEntry type="library" name="support-v13-25.0.0" level="project" />
-    <orderEntry type="library" name="searchview-4.0" level="project" />
-    <orderEntry type="library" name="materialsearchview-1.4.0" level="project" />
-    <orderEntry type="library" name="core-0.9.1.0" level="project" />
-    <orderEntry type="library" name="library-1.3.0" level="project" />
-    <orderEntry type="library" name="support-core-utils-25.3.1" level="project" />
-    <orderEntry type="library" name="support-fragment-25.3.1" level="project" />
-    <orderEntry type="library" name="library-1.0.0" level="project" />
-    <orderEntry type="library" name="fastjson-1.1.33" level="project" />
-    <orderEntry type="library" name="library-2.4.0" level="project" />
-    <orderEntry type="library" name="materialize-0.9.0" level="project" />
-    <orderEntry type="library" name="materialdrawer-5.4.0" level="project" />
-    <orderEntry type="library" name="fastadapter-1.6.1" level="project" />
-    <orderEntry type="library" name="eventbus-3.0.0" level="project" />
-    <orderEntry type="library" name="transition-25.0.0" level="project" />
-    <orderEntry type="library" name="ormlite-core-4.48" level="project" />
-    <orderEntry type="library" name="support-v4-25.3.1" level="project" />
-    <orderEntry type="library" name="support-media-compat-25.3.1" level="project" />
-    <orderEntry type="library" name="swipebackhelper-3.1.2" level="project" />
-    <orderEntry type="library" name="fingerprintidentify-1.1.4" level="project" />
-    <orderEntry type="library" name="support-annotations-25.3.1" level="project" />
-    <orderEntry type="library" name="appcompat-v7-25.3.1" level="project" />
-    <orderEntry type="library" name="support-vector-drawable-25.3.1" level="project" />
-    <orderEntry type="library" name="animated-vector-drawable-25.3.1" level="project" />
-    <orderEntry type="library" name="recyclerview-v7-25.0.0" level="project" />
-    <orderEntry type="library" name="support-compat-25.3.1" level="project" />
-    <orderEntry type="library" name="iconics-core-2.7.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:appcompat-v7-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-fragment-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-annotations:25.3.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\Dev\jmx\EasyGTD\app\libs\ormlite-core-4.48.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.mikepenz:iconics-core-2.7.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-media-compat-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.mikepenz:materialize-0.9.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.malinskiy:materialicons-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\Dev\jmx\EasyGTD\app\libs\ormlite-android-4.48.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:animated-vector-drawable-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-compat-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.github.kenumir:MaterialSettings-v.1.2.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: me.zhanghai.android.materialprogressbar:library-1.3.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:transition-25.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.github.flavienlaurent.datetimepicker:library-0.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.github.lzyzsd.randomcolor:library-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-v13-25.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.melnykov:floatingactionbutton-1.0.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.nineoldandroids:library:2.4.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.lapism:searchview-4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-v4-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.afollestad.material-dialogs:commons-0.9.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.roughike:bottom-bar-2.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.github.johnpersano:supertoasts-1.3.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-core-ui-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:recyclerview-v7-25.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:cardview-v7-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.greenrobot:eventbus:3.0.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.afollestad.material-dialogs:core-0.9.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.mikepenz:fastadapter-1.6.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:design-25.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.mikepenz:materialdrawer-5.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.jude:swipebackhelper-3.1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.miguelcatalan:materialsearchview-1.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-vector-drawable-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.wei.android.lib:fingerprintidentify-1.1.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.android.support:support-core-utils-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: __local_jars__:D.\Dev\jmx\EasyGTD\app\libs\fastjson-1.1.33.jar:unspecified@jar" level="project" />
   </component>
 </module>
