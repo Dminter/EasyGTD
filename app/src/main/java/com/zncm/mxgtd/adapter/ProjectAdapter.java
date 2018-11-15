@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.zncm.mxgtd.R;
@@ -27,7 +28,14 @@ public abstract class ProjectAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void setItems(List<? extends BaseData> items, LoadMoreRecyclerView recyclerView) {
         this.items = items;
         notifyDataSetChanged();
-        recyclerView.getAdapter().notifyDataSetChanged();
+        /**
+         * java.lang.IllegalStateException: Cannot call this method while RecyclerView is computing a layout or scrolling
+         */
+        try {
+            recyclerView.getAdapter().notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -63,6 +71,7 @@ public abstract class ProjectAdapter extends RecyclerView.Adapter<RecyclerView.V
         public TextView tvTag;
         public TextView tvTitle;
         public TextView tvTime;
+        public CheckBox cbCheck;
         private View view;
 
         public PjViewHolder(View convertView) {
@@ -75,6 +84,7 @@ public abstract class ProjectAdapter extends RecyclerView.Adapter<RecyclerView.V
             tvTag = (TextView) convertView
                     .findViewById(R.id.tvTag);
             tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+            cbCheck = (CheckBox) convertView.findViewById(R.id.cbCheck);
             tvTime = (TextView) convertView.findViewById(R.id.tvTime);
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);

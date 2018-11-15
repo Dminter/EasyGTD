@@ -1,71 +1,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:descendantFocusability="blocksDescendants"
               android:background="@color/material_light_white"
-    android:orientation="vertical">
+              android:orientation="vertical">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cardView"
+                                        android:id="@+id/cardView"
 
-        style="@style/Material_Card_View"
-        android:foreground="@drawable/card_foreground"
-        card_view:cardCornerRadius="@dimen/card_corner_radius"
-        card_view:cardElevation="@dimen/card_elevation">
+                                        style="@style/Material_Card_View"
+                                        android:foreground="@drawable/card_foreground"
+                                        card_view:cardCornerRadius="@dimen/card_corner_radius"
+                                        card_view:cardElevation="@dimen/card_elevation">
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+            >
+
+                <CheckBox
+                        android:id="@+id/cbCheck"
+                        android:layout_width="wrap_content"
+                        android:visibility="visible"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="16"
+                        android:textColor="@color/material_light_black"
+                        android:textSize="16sp"
+                        android:text="第三方水电费水电费水电费第第三方水电费水电费水电费第三方斯蒂芬斯蒂芬斯蒂芬斯蒂芬三方斯蒂芬斯蒂芬斯蒂芬斯蒂芬"
+                        android:visibility="visible"/>
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="16"
-                android:textColor="@color/material_light_black"
-                android:textSize="16sp"
-                android:visibility="gone" />
+                    android:id="@+id/tvContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sfsdfdsffffffffffffff啊发顺丰水电费水电费水电费的说法是十多个十多个个"
+                    android:textColor="@color/colorKeeptextg"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="visible"/>
 
             <TextView
-                android:id="@+id/tvContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text=""
-                android:textColor="@color/colorKeeptextg"
-                android:textSize="14sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tvTag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:singleLine="true"
-                android:text=""
-                android:textColor="@color/colorKeeptextg"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
+                    android:id="@+id/tvTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="给对方更广泛的个电饭锅电饭锅电饭锅"
+                    android:textColor="@color/colorKeeptextg"
+                    android:textSize="12sp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="visible"/>
 
 
             <TextView
-                android:id="@+id/tvTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:singleLine="true"
-                android:text=""
-                android:textColor="@color/colorKeeptextg"
-                android:textSize="10sp"
-                android:visibility="gone" />
-
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:text="111111111111111111"
+                    android:textColor="@color/colorKeeptextg"
+                    android:textSize="10sp"
+                    android:visibility="visible"/>
 
 
         </LinearLayout>

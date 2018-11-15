@@ -215,7 +215,7 @@ public class EnumData {
 
     public enum queryEnum {
 
-        _TODAY("_TODAY", "_TODAY"),_DAY("_DAY", "_DAY");
+        _TODAY("_TODAY", "_TODAY"),_UNFINISH_CHECK("_UNFINISH_CHECK", "未完成");
         private String value;
         private String strName;
 

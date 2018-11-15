@@ -9,9 +9,9 @@ public class Constant {
 
     public static final int MAX_LEN = 12;
     public static final int sort_no = 999;
-    public static final int FS_1 = 24;
-    public static final int FS_2 = 16;
-    public static final int FS_3 = 14;
+    public static final int FS_1 = 28;
+    public static final int FS_2 = 18;
+    public static final int FS_3 = 8;
 
     public static final String ACTION_BUTTON = "com.notifications.intent.action.ButtonClick";
     public static final String INTENT_BUTTONID_TAG = "ButtonId";

@@ -26,6 +26,7 @@ import com.zncm.mxgtd.ui.ProjectDetailsActivity;
 import com.zncm.mxgtd.ui.TextActivity;
 import com.zncm.mxgtd.ui.TkDetailsActivity;
 import com.zncm.mxgtd.utils.DbUtils;
+import com.zncm.mxgtd.utils.MySp;
 import com.zncm.mxgtd.utils.XUtil;
 import com.zncm.mxgtd.view.loadmore.MxItemClickListener;
 
@@ -58,8 +59,18 @@ public class LikeFragment extends BaseListFragment {
                     holder.tvTitle.setVisibility(View.GONE);
                 }
                 holder.tvContent.setVisibility(View.GONE);
+                holder.cbCheck.setVisibility(View.GONE);
                 holder.tvTag.setVisibility(View.GONE);
                 holder.tvTitle.setTextSize(24);
+                if (!MySp.getShowSimple()) {
+                    if (likeData.getTime() != null) {
+                        holder.tvTime.setText(XUtil.getDateYMDEHM(likeData.getTime()));
+                        holder.tvTime.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.tvTime.setVisibility(View.GONE);
+                    }
+                }
+
                 holder.cardView.setCardBackgroundColor(getResources().getColor(R.color.colorSearch));
                 holder.setClickListener(new MxItemClickListener() {
                     @Override
